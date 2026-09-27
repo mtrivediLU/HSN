@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Public+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<meta name="description" content="Mihir Trivedi's HSN Decision Support Analyst II interview presentation: an operating room dashboard preparation approach.">
+<title>HSN Operating Room Dashboard · Interview Presentation</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="brand-button" id="homeButton" type="button" aria-label="Return to slide 1">HSN OR Dashboard</button>
+  <div class="header-actions">
+    <a class="download-button" href="./downloads/Mihir_Trivedi_HSN_OR_Dashboard.pptx" download>Download PowerPoint</a>
+  </div>
+</header>
+<div id="deck" class="deck" aria-live="polite">
+
+<section data-label="01 Decision" data-speaker-notes="“I would begin with the decisions the Director and OR team need to make. A useful dashboard should show where performance changed, allow the team to understand the context, and support a follow-up action.” — Timing: spend the most time on slides 2–5 and 8; that is where the panel hears Decision Support judgment, beyond building a Power BI report." style="background:#14202A; color:#F2F1EC; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 64px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase;">
+    <span style="color:#8FB3B9;">Interview case · Surgical Program OR dashboard</span>
+    <span style="color:#A9B3BC;">Health Sciences North · Competition #10169</span>
+  </div>
+  <div style="flex:1; min-height:0; display:grid; grid-template-columns:1040px 1fr; gap:80px; align-items:center;">
+    <div style="display:flex; flex-direction:column; gap:44px;">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:baseline; gap:28px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:28px; color:#8FB3B9;">01</span>
+          <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:84px; line-height:1.08; letter-spacing:-0.015em;">Start with the decisions.</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:28px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:28px; color:#8FB3B9;">02</span>
+          <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:84px; line-height:1.08; letter-spacing:-0.015em;">Make the data trustworthy.</span>
+        </div>
+        <div style="display:flex; align-items:baseline; gap:28px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:28px; color:#8FB3B9;">03</span>
+          <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:84px; line-height:1.08; letter-spacing:-0.015em;">Design for action.</span>
+        </div>
+      </div>
+      <p style="margin:0 0 0 62px; max-width:900px; font-size:30px; line-height:1.45; color:#C9D0D6; text-wrap:pretty;">An OR dashboard should lead to a decision. The Director needs a reliable view of access, OR flow, and capacity, with a way to move from a trend to its likely operational cause.</p>
+    </div>
+    <div style="position:relative; width:560px; height:560px; justify-self:center;">
+      <div style="position:absolute; left:60px; top:60px; width:440px; height:440px; border:2px solid #3A5561; border-radius:50%; box-sizing:border-box;"></div>
+      <div style="position:absolute; left:280px; top:280px; transform:translate(-50%,-50%); width:250px; display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#8FB3B9;">Success</span>
+        <span style="font-size:26px; line-height:1.35; color:#F2F1EC; text-wrap:balance;">The team can agree on a measure, investigate a variance, and take an action.</span>
+      </div>
+      <div style="position:absolute; left:280px; top:60px; transform:translate(-50%,-50%); display:flex; align-items:center; gap:12px; padding:12px 24px; background:#14202A; border:2px solid #8FB3B9; border-radius:999px; white-space:nowrap;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#8FB3B9;">1</span>
+        <span style="font-size:26px; font-weight:600;">Question</span>
+      </div>
+      <div style="position:absolute; left:489px; top:212px; transform:translate(-50%,-50%); display:flex; align-items:center; gap:12px; padding:12px 24px; background:#14202A; border:2px solid #8FB3B9; border-radius:999px; white-space:nowrap;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#8FB3B9;">2</span>
+        <span style="font-size:26px; font-weight:600;">Measure</span>
+      </div>
+      <div style="position:absolute; left:409px; top:458px; transform:translate(-50%,-50%); display:flex; align-items:center; gap:12px; padding:12px 24px; background:#14202A; border:2px solid #8FB3B9; border-radius:999px; white-space:nowrap;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#8FB3B9;">3</span>
+        <span style="font-size:26px; font-weight:600;">Investigate</span>
+      </div>
+      <div style="position:absolute; left:151px; top:458px; transform:translate(-50%,-50%); display:flex; align-items:center; gap:12px; padding:12px 24px; background:#1D5C68; border:2px solid #8FB3B9; border-radius:999px; white-space:nowrap;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#CFE0E2;">4</span>
+        <span style="font-size:26px; font-weight:600;">Act</span>
+      </div>
+      <div style="position:absolute; left:71px; top:212px; transform:translate(-50%,-50%); display:flex; align-items:center; gap:12px; padding:12px 24px; background:#14202A; border:2px solid #8FB3B9; border-radius:999px; white-space:nowrap;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#8FB3B9;">5</span>
+        <span style="font-size:26px; font-weight:600;">Review</span>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 440px; gap:80px; align-items:end; padding-top:28px; border-top:1px solid #33434F;">
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#8FB3B9;">The case</span>
+      <span style="font-size:26px; line-height:1.4; color:#C9D0D6; text-wrap:pretty;">“You are the Decision Support Analyst assigned to the Surgical Program and the Director of the Surgical Program would like to develop an operating room dashboard. What steps would you take in the preparation of this dashboard?”</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:6px; text-align:right;">
+      <span style="font-size:32px; font-weight:600;">Mihir Trivedi</span>
+      <span style="font-size:24px; color:#A9B3BC;">Decision Support Analyst II interview</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="02 Workflow &amp; stakeholders" data-speaker-notes="“I would observe how cases move from booking through completion and ask each group where the current reporting falls short. That is how I would separate a question the dashboard can answer from one that requires a workflow change or better data capture.”" style="background:#F5F4EF; color:#16212C; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 56px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Step 02 · Workflow &amp; stakeholders</span>
+    <h2 style="margin:0; font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:64px; line-height:1.1; letter-spacing:-0.01em;">Discover the workflow and agree on scope</h2>
+    <p style="margin:0; max-width:1400px; font-size:30px; line-height:1.4; color:#4A5561;">Clinical and operational context determines what the dashboard can responsibly measure.</p>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:40px; display:grid; grid-template-columns:800px 1fr; gap:80px; align-items:center;">
+    <div style="display:flex; flex-direction:column;">
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570; margin-bottom:12px;">Ask each group</span>
+      <div style="display:flex; gap:24px; align-items:baseline; padding:18px 0; border-top:1px solid #D8D4CA;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:26px; color:#1D5C68;">Q1</span>
+        <span style="font-size:30px; line-height:1.35;">Which decisions are daily versus monthly?</span>
+      </div>
+      <div style="display:flex; gap:24px; align-items:baseline; padding:18px 0; border-top:1px solid #D8D4CA;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:26px; color:#1D5C68;">Q2</span>
+        <span style="font-size:30px; line-height:1.35;">What explains delays or cancellations today?</span>
+      </div>
+      <div style="display:flex; gap:24px; align-items:baseline; padding:18px 0; border-top:1px solid #D8D4CA; border-bottom:1px solid #D8D4CA;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:26px; color:#1D5C68;">Q3</span>
+        <span style="font-size:30px; line-height:1.35;">Which existing reports are trusted?</span>
+      </div>
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570; margin-top:44px; margin-bottom:16px;">Agree before building</span>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:20px 24px; font-size:28px; font-weight:600;">Audience</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:20px 24px; font-size:28px; font-weight:600;">First release</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:20px 24px; font-size:28px; font-weight:600;">Refresh frequency</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:20px 24px; font-size:28px; font-weight:600;">Exclusions</div>
+      </div>
+    </div>
+    <div style="position:relative; width:780px; height:600px; justify-self:end;">
+      <div style="position:absolute; left:90px; top:60px; width:600px; height:480px; border:2px dashed #C4BFB2; border-radius:50%; box-sizing:border-box;"></div>
+      <div style="position:absolute; left:205px; top:215px; width:170px; height:170px; border-radius:50%; background:rgba(29,92,104,0.08); border:2px solid #1D5C68; box-sizing:border-box;"></div>
+      <div style="position:absolute; left:305px; top:215px; width:170px; height:170px; border-radius:50%; background:rgba(29,92,104,0.08); border:2px solid #1D5C68; box-sizing:border-box;"></div>
+      <div style="position:absolute; left:405px; top:215px; width:170px; height:170px; border-radius:50%; background:rgba(29,92,104,0.08); border:2px solid #1D5C68; box-sizing:border-box;"></div>
+      <span style="position:absolute; left:262px; top:300px; transform:translate(-50%,-50%); font-size:26px; font-weight:600; color:#1D5C68;">Access</span>
+      <span style="position:absolute; left:390px; top:300px; transform:translate(-50%,-50%); font-size:26px; font-weight:600; color:#1D5C68;">Flow</span>
+      <span style="position:absolute; left:522px; top:300px; transform:translate(-50%,-50%); font-size:26px; font-weight:600; color:#1D5C68;">Capacity</span>
+      <span style="position:absolute; left:390px; top:418px; transform:translate(-50%,-50%); font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570; white-space:nowrap;">Shared questions</span>
+      <span style="position:absolute; left:390px; top:60px; transform:translate(-50%,-50%); padding:10px 20px; background:#16212C; color:#F5F4EF; border-radius:999px; font-size:24px; font-weight:600; white-space:nowrap;">Surgical Program Director</span>
+      <span style="position:absolute; left:602px; top:130px; transform:translate(-50%,-50%); padding:10px 20px; background:#FFFFFF; border:1px solid #C4BFB2; border-radius:999px; font-size:24px; white-space:nowrap;">OR manager</span>
+      <span style="position:absolute; left:690px; top:300px; transform:translate(-50%,-50%); padding:10px 20px; background:#FFFFFF; border:1px solid #C4BFB2; border-radius:999px; font-size:24px; white-space:nowrap;">Surgeons</span>
+      <span style="position:absolute; left:602px; top:470px; transform:translate(-50%,-50%); padding:10px 20px; background:#FFFFFF; border:1px solid #C4BFB2; border-radius:999px; font-size:24px; white-space:nowrap;">Anesthesia</span>
+      <span style="position:absolute; left:390px; top:540px; transform:translate(-50%,-50%); padding:10px 20px; background:#FFFFFF; border:1px solid #C4BFB2; border-radius:999px; font-size:24px; white-space:nowrap;">Nursing</span>
+      <span style="position:absolute; left:178px; top:470px; transform:translate(-50%,-50%); padding:10px 20px; background:#FFFFFF; border:1px solid #C4BFB2; border-radius:999px; font-size:24px; white-space:nowrap;">Scheduling</span>
+      <span style="position:absolute; left:90px; top:300px; transform:translate(-50%,-50%); padding:10px 20px; background:#FFFFFF; border:1px solid #C4BFB2; border-radius:999px; font-size:24px; white-space:nowrap;">Quality</span>
+      <span style="position:absolute; left:178px; top:130px; transform:translate(-50%,-50%); padding:10px 20px; background:#E3ECEC; border:1px solid #1D5C68; color:#1D5C68; border-radius:999px; font-size:24px; font-weight:600; white-space:nowrap;">Decision Support</span>
+    </div>
+  </div>
+  <div class="conditional">
+    <div style="display:flex; align-items:center; gap:18px; margin-top:24px;">
+      <div style="width:10px; height:10px; background:#1D5C68; flex-shrink:0;"></div>
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68; white-space:nowrap;">From my work</span>
+      <span style="font-size:24px; color:#4A5561;">City of Greater Sudbury: clarified data context with program staff so reports reflected actual operational needs.</span>
+    </div>
+  </div>
+  <div style="margin-top:24px; padding-top:20px; border-top:1px solid #D8D4CA; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+    <span>Mihir Trivedi · HSN Decision Support Analyst II · #10169</span>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <div class="conditional">
+        <div style="display:flex; gap:6px;">
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#1D5C68;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+        </div>
+      </div>
+      <span style="color:#16212C;">02 / 09</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="03 KPI definitions" data-speaker-notes="“I would resist putting every available metric on page one. We would agree on a few measures that answer real questions, document exactly how each is calculated, and establish a baseline before proposing local targets.” — Reference: Ontario Health surgical efficiency reporting includes first-case starts, turnover, utilization, cancellations and other perioperative measures. Its first-case definition uses patient-in-room time relative to scheduled start, with specific eligibility and exclusion rules; its utilization measure adjusts available time for planned closures. Wait 2 is the interval from decision to treat to surgery. These are reference definitions to review with HSN, not assumed local definitions." style="background:#F5F4EF; color:#16212C; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 56px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Step 03 · KPI definitions</span>
+    <h2 style="margin:0; font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:64px; line-height:1.1; letter-spacing:-0.01em;">Define a small, balanced KPI set</h2>
+    <p style="margin:0; max-width:1400px; font-size:30px; line-height:1.4; color:#4A5561;">Every KPI needs an agreed meaning, denominator, owner, and use.</p>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:28px; display:flex; flex-direction:column; gap:24px;">
+    <div style="display:flex; flex-direction:column;">
+      <div style="display:grid; grid-template-columns:960px 1fr; gap:40px; padding:0 0 10px; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570;">
+        <span>Proposed initial measure</span>
+        <span>Decision it supports</span>
+      </div>
+      <div style="display:grid; grid-template-columns:960px 1fr; gap:40px; padding:9px 0; border-top:1px solid #D8D4CA; align-items:baseline;">
+        <span style="font-size:27px; font-weight:600;">Completed case volume, by service and urgency</span>
+        <span style="font-size:27px; color:#3A4550;">Is activity changing, and in which areas?</span>
+      </div>
+      <div style="display:grid; grid-template-columns:960px 1fr; gap:40px; padding:9px 0; border-top:1px solid #D8D4CA; align-items:baseline;">
+        <span style="font-size:27px; font-weight:600;">First-case on-time starts</span>
+        <span style="font-size:27px; color:#3A4550;">Where should the team investigate morning delays?</span>
+      </div>
+      <div style="display:grid; grid-template-columns:960px 1fr; gap:40px; padding:9px 0; border-top:1px solid #D8D4CA; align-items:baseline;">
+        <span style="font-size:27px; font-weight:600;">Same-day cancellation rate and reasons</span>
+        <span style="font-size:27px; color:#3A4550;">Which disruptions may be preventable?</span>
+      </div>
+      <div style="display:grid; grid-template-columns:960px 1fr; gap:40px; padding:9px 0; border-top:1px solid #D8D4CA; align-items:baseline;">
+        <span style="font-size:27px; font-weight:600;">OR utilization during staffed, available time</span>
+        <span style="font-size:27px; color:#3A4550;">How is usable capacity being used?</span>
+      </div>
+      <div style="display:grid; grid-template-columns:960px 1fr; gap:40px; padding:9px 0; border-top:1px solid #D8D4CA; align-items:baseline;">
+        <span style="font-size:27px; font-weight:600;">Turnover time</span>
+        <span style="font-size:27px; color:#3A4550;">Where is between-case flow changing?</span>
+      </div>
+      <div style="display:grid; grid-template-columns:960px 1fr; gap:40px; padding:9px 0; border-top:1px solid #D8D4CA; border-bottom:1px solid #D8D4CA; align-items:center;">
+        <div style="display:flex; align-items:center; gap:18px;">
+          <span style="font-size:27px; font-weight:600;">Wait 2 and cases approaching target</span>
+          <span style="padding:2px 12px; background:#F4EADB; color:#8A5A14; border-radius:4px; font-size:24px;">If in scope and reliably available</span>
+        </div>
+        <span style="font-size:27px; color:#3A4550;">Where is access pressure building?</span>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; gap:40px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">KPI dictionary · example entry</span>
+        <span style="font-size:24px; color:#5B6570;">Reference: Ontario Health surgical efficiency reporting · to review with HSN</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px;">
+        <div style="padding:14px 20px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-transform:uppercase; color:#5B6570;">Name</span>
+          <span style="font-size:24px; line-height:1.3; font-weight:600;">First-case on-time starts</span>
+        </div>
+        <div style="padding:14px 20px; display:flex; flex-direction:column; gap:6px; border-left:1px solid #E6E3DB;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-transform:uppercase; color:#5B6570;">Question</span>
+          <span style="font-size:24px; line-height:1.3;">Where should the team investigate morning delays?</span>
+        </div>
+        <div style="padding:14px 20px; display:flex; flex-direction:column; gap:6px; border-left:1px solid #E6E3DB;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-transform:uppercase; color:#5B6570;">Calculation</span>
+          <span style="font-size:24px; line-height:1.3;">Patient-in-room time vs. scheduled start</span>
+        </div>
+        <div style="padding:14px 20px; display:flex; flex-direction:column; gap:6px; border-left:1px solid #E6E3DB;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-transform:uppercase; color:#5B6570;">Exclusions</span>
+          <span style="font-size:24px; line-height:1.3;">Eligibility and exclusion rules to confirm</span>
+        </div>
+        <div style="padding:14px 20px; display:flex; flex-direction:column; gap:6px; border-left:1px solid #E6E3DB;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-transform:uppercase; color:#5B6570;">Owner</span>
+          <span style="font-size:24px; line-height:1.3; color:#5B6570;">To be agreed</span>
+        </div>
+        <div style="padding:14px 20px; display:flex; flex-direction:column; gap:6px; border-left:1px solid #E6E3DB;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-transform:uppercase; color:#5B6570;">Refresh</span>
+          <span style="font-size:24px; line-height:1.3; color:#5B6570;">To be agreed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:24px; padding-top:20px; border-top:1px solid #D8D4CA; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+    <span>Mihir Trivedi · HSN Decision Support Analyst II · #10169</span>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <div class="conditional">
+        <div style="display:flex; gap:6px;">
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#1D5C68;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+        </div>
+      </div>
+      <span style="color:#16212C;">03 / 09</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="04 Data sources" data-speaker-notes="“Before joining tables, I would walk through a few real cases with scheduling and clinical staff. I need to know what each timestamp means, when it changes, and which record wins if two systems disagree.” — Assess the actual systems HSN uses; also assess whether provincial wait-time data is appropriate for the agreed scope." style="background:#F5F4EF; color:#16212C; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 56px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Step 04 · Data sources</span>
+    <h2 style="margin:0; font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:64px; line-height:1.1; letter-spacing:-0.01em;">Map the sources and the journey of a case</h2>
+    <p style="margin:0; max-width:1400px; font-size:30px; line-height:1.4; color:#4A5561;">Identify which system is authoritative for each event.</p>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:36px; display:flex; flex-direction:column; gap:36px;">
+    <div style="display:grid; grid-template-columns:440px 64px 560px 64px 1fr; align-items:center;">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570; margin-bottom:4px;">Sources · to confirm at HSN</span>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:11px 18px; font-size:26px;">OR schedules</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:11px 18px; font-size:26px;">Case &amp; anesthesia timestamps</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:11px 18px; font-size:26px;">Cancellations &amp; reasons</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:11px 18px; font-size:26px;">Room availability</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:11px 18px; font-size:26px;">Patient encounters</div>
+        <div style="border:1.5px dashed #9B968A; border-radius:6px; padding:11px 18px; font-size:26px; color:#4A5561;">Provincial wait-time data · assess fit</div>
+      </div>
+      <span style="text-align:center; font-size:44px; color:#1D5C68;">→</span>
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div style="background:#FFFFFF; border:2px solid #1D5C68; border-radius:8px; padding:30px 32px; display:flex; flex-direction:column;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68; margin-bottom:14px;">Mapped case record</span>
+          <span style="font-size:28px; line-height:1.3; padding:14px 0; border-top:1px solid #E6E3DB;">Identifiers mapped across systems</span>
+          <span style="font-size:28px; line-height:1.3; padding:14px 0; border-top:1px solid #E6E3DB;">Event times with an agreed meaning</span>
+          <span style="font-size:28px; line-height:1.3; padding:14px 0 0; border-top:1px solid #E6E3DB;">An authoritative source for each event</span>
+        </div>
+        <span style="font-size:24px; line-height:1.35; color:#5B6570; text-wrap:pretty;">The JD names systems such as Meditech; that does not establish which system holds HSN’s OR event data.</span>
+      </div>
+      <span style="text-align:center; font-size:44px; color:#1D5C68;">→</span>
+      <div style="background:#E3ECEC; border-radius:8px; padding:28px 30px; display:flex; flex-direction:column; gap:12px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68; margin-bottom:4px;">Measures</span>
+        <span style="font-size:26px;">Case volume</span>
+        <span style="font-size:26px;">First-case starts</span>
+        <span style="font-size:26px;">Cancellations</span>
+        <span style="font-size:26px;">Utilization</span>
+        <span style="font-size:26px;">Turnover</span>
+        <span style="font-size:26px; color:#4A5561;">Wait 2, if in scope</span>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570;">Walk through real cases with scheduling and clinical staff</span>
+      <div style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px;">
+        <div style="display:flex; gap:18px; align-items:baseline; padding:20px 24px; background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#1D5C68;">01</span>
+          <span style="font-size:28px;">What does each timestamp mean?</span>
+        </div>
+        <div style="display:flex; gap:18px; align-items:baseline; padding:20px 24px; background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#1D5C68;">02</span>
+          <span style="font-size:28px;">When does it change?</span>
+        </div>
+        <div style="display:flex; gap:18px; align-items:baseline; padding:20px 24px; background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#1D5C68;">03</span>
+          <span style="font-size:28px;">Which record wins if systems disagree?</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:24px; padding-top:20px; border-top:1px solid #D8D4CA; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+    <span>Mihir Trivedi · HSN Decision Support Analyst II · #10169</span>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <div class="conditional">
+        <div style="display:flex; gap:6px;">
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#1D5C68;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+        </div>
+      </div>
+      <span style="color:#16212C;">04 / 09</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="05 Data quality" data-speaker-notes="“If patient-in-room or room-availability data is incomplete, utilization can look precise and still be misleading. I would report data-quality status alongside the KPI and hold a measure back if we cannot explain a material discrepancy.” — CIHI has shown that OR occupancy estimates are sensitive to how turnaround and available time are treated." style="background:#F5F4EF; color:#16212C; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 56px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Step 05 · Data quality</span>
+    <h2 style="margin:0; font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:64px; line-height:1.1; letter-spacing:-0.01em;">Establish data quality before reporting performance</h2>
+    <p style="margin:0; max-width:1400px; font-size:30px; line-height:1.4; color:#4A5561;">A dashboard must make uncertainty visible, not hide it.</p>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:40px; display:flex; flex-direction:column; gap:44px;">
+    <div style="display:grid; grid-template-columns:1fr 48px 1fr 48px 1fr 48px 1fr 48px 1fr; align-items:stretch;">
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:18px 22px; display:flex; flex-direction:column; gap:6px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">01</span>
+        <span style="font-size:28px; font-weight:600;">Extract</span>
+      </div>
+      <span style="align-self:center; text-align:center; font-size:36px; color:#1D5C68;">→</span>
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:18px 22px; display:flex; flex-direction:column; gap:6px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">02</span>
+        <span style="font-size:28px; font-weight:600;">Test</span>
+      </div>
+      <span style="align-self:center; text-align:center; font-size:36px; color:#1D5C68;">→</span>
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:18px 22px; display:flex; flex-direction:column; gap:6px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">03</span>
+        <span style="font-size:28px; font-weight:600;">Reconcile</span>
+      </div>
+      <span style="align-self:center; text-align:center; font-size:36px; color:#1D5C68;">→</span>
+      <div style="background:#F4EADB; border:2px solid #8A5A14; border-radius:6px; padding:17px 21px; display:flex; flex-direction:column; gap:6px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#8A5A14;">04 · Gate</span>
+        <span style="font-size:28px; font-weight:600;">Resolve or flag</span>
+      </div>
+      <span style="align-self:center; text-align:center; font-size:36px; color:#1D5C68;">→</span>
+      <div style="background:#1D5C68; color:#FFFFFF; border-radius:6px; padding:18px 22px; display:flex; flex-direction:column; gap:6px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#CFE0E2;">05</span>
+        <span style="font-size:28px; font-weight:600;">Publish</span>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) 600px; gap:56px; align-items:start;">
+      <div style="display:flex; flex-direction:column;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570; margin-bottom:10px;">Test for</span>
+        <span style="font-size:26px; line-height:1.3; padding:12px 0; border-top:1px solid #D8D4CA;">Missing or reversed timestamps</span>
+        <span style="font-size:26px; line-height:1.3; padding:12px 0; border-top:1px solid #D8D4CA;">Duplicate or rescheduled cases</span>
+        <span style="font-size:26px; line-height:1.3; padding:12px 0; border-top:1px solid #D8D4CA;">Inconsistent cancellation reasons</span>
+        <span style="font-size:26px; line-height:1.3; padding:12px 0; border-top:1px solid #D8D4CA;">Cases spanning shifts</span>
+        <span style="font-size:26px; line-height:1.3; padding:12px 0; border-top:1px solid #D8D4CA; border-bottom:1px solid #D8D4CA;">Room closures</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:28px;">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570;">Reconcile</span>
+          <span style="font-size:26px; line-height:1.35;">Volumes and selected measures against trusted operational reports.</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570;">Record</span>
+          <span style="font-size:26px; line-height:1.35;">Each exception, its impact, and who can resolve it.</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#8A5A14;">Hold back</span>
+          <span style="font-size:26px; line-height:1.35;">A measure with a material discrepancy we cannot yet explain.</span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:8px; padding:28px 30px; display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; gap:16px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Status beside the KPI</span>
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#8A5A14;">Illustrative</span>
+        </div>
+        <div style="background:#F8F7F3; border:1px solid #E6E3DB; border-radius:6px; padding:18px 22px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-size:24px; color:#4A5561;">OR utilization, staffed time</span>
+          <span style="font-size:52px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.1;">82%</span>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:12px; height:12px; border-radius:50%; background:#8A5A14; flex-shrink:0;"></div>
+            <span style="font-size:24px; color:#8A5A14;">Patient-in-room times incomplete for 2 rooms</span>
+          </div>
+        </div>
+        <span style="font-size:24px; line-height:1.4; color:#4A5561; text-wrap:pretty;">CIHI has shown that OR occupancy estimates are sensitive to how turnaround and available time are treated.</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:24px; padding-top:20px; border-top:1px solid #D8D4CA; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+    <span>Mihir Trivedi · HSN Decision Support Analyst II · #10169</span>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <div class="conditional">
+        <div style="display:flex; gap:6px;">
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#1D5C68;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+        </div>
+      </div>
+      <span style="color:#16212C;">05 / 09</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="06 Data model" data-speaker-notes="“This is where my SQL, ETL, data-dictionary, and Power BI experience transfers directly. At Flosonics, I integrated clinical and operational sources and validated leadership reporting; at the City, I worked with PreHos scheduling data and program staff. I would apply that discipline here while learning HSN’s OR definitions from its experts.”" style="background:#F5F4EF; color:#16212C; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 56px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Step 06 · Governed data model</span>
+    <h2 style="margin:0; font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:64px; line-height:1.1; letter-spacing:-0.01em;">Build a repeatable model, then the dashboard</h2>
+    <p style="margin:0; max-width:1400px; font-size:30px; line-height:1.4; color:#4A5561;">One governed data model should support consistent answers across views.</p>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:40px; display:grid; grid-template-columns:250px 44px minmax(0,1fr) 44px 290px 44px 300px; align-items:center;">
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570; margin-bottom:4px;">Source extracts</span>
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:10px 16px; font-size:24px;">Scheduling</div>
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:10px 16px; font-size:24px;">Perioperative</div>
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:10px 16px; font-size:24px;">Cancellations</div>
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:10px 16px; font-size:24px;">Room plan</div>
+    </div>
+    <span style="text-align:center; font-size:36px; color:#1D5C68;">→</span>
+    <div style="background:#FFFFFF; border:2px solid #1D5C68; border-radius:8px; padding:26px 28px; display:flex; flex-direction:column; gap:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Validated SQL model</span>
+        <span style="font-size:24px; color:#5B6570;">Documented in the data dictionary</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px;">
+        <div style="background:#E3ECEC; border-radius:6px; padding:16px 18px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-size:26px; font-weight:600;">Case</span>
+          <span style="font-size:24px; color:#3A4550;">One row per case</span>
+        </div>
+        <div style="background:#E3ECEC; border-radius:6px; padding:16px 18px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-size:26px; font-weight:600;">Cancellation</span>
+          <span style="font-size:24px; color:#3A4550;">One row per cancellation</span>
+        </div>
+        <div style="background:#E3ECEC; border-radius:6px; padding:16px 18px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-size:26px; font-weight:600;">Room availability</span>
+          <span style="font-size:24px; color:#3A4550;">One row per room session</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="flex:1; height:0; border-top:2px dotted #9DB9BE;"></div>
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570;">Shared dimensions</span>
+        <div style="flex:1; height:0; border-top:2px dotted #9DB9BE;"></div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px;">
+        <div style="border:1.5px solid #1D5C68; border-radius:999px; padding:8px 0; text-align:center; font-size:24px; color:#1D5C68;">Date</div>
+        <div style="border:1.5px solid #1D5C68; border-radius:999px; padding:8px 0; text-align:center; font-size:24px; color:#1D5C68;">Room</div>
+        <div style="border:1.5px solid #1D5C68; border-radius:999px; padding:8px 0; text-align:center; font-size:24px; color:#1D5C68;">Service</div>
+        <div style="border:1.5px solid #1D5C68; border-radius:999px; padding:8px 0; text-align:center; font-size:24px; color:#1D5C68;">Urgency</div>
+      </div>
+    </div>
+    <span style="text-align:center; font-size:36px; color:#1D5C68;">→</span>
+    <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:8px; padding:24px 24px; display:flex; flex-direction:column; gap:10px;">
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Approved KPIs</span>
+      <span style="font-size:24px; line-height:1.3; color:#4A5561; padding-bottom:10px; border-bottom:1px solid #E6E3DB;">Calculated once, reused in every view</span>
+      <span style="font-size:24px;">Case volume</span>
+      <span style="font-size:24px;">First-case starts</span>
+      <span style="font-size:24px;">Cancellations</span>
+      <span style="font-size:24px;">Utilization</span>
+      <span style="font-size:24px;">Turnover</span>
+    </div>
+    <span style="text-align:center; font-size:36px; color:#1D5C68;">→</span>
+    <div style="background:#16212C; color:#F5F4EF; border-radius:8px; padding:24px 26px; display:flex; flex-direction:column; gap:14px;">
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#8FB3B9;">Power BI</span>
+      <span style="font-size:26px; padding-top:12px; border-top:1px solid #33434F;">Program summary</span>
+      <span style="font-size:26px; padding-top:12px; border-top:1px solid #33434F;">Drill-down views</span>
+      <span style="font-size:26px; padding-top:12px; border-top:1px solid #33434F;">Automated refresh</span>
+      <span style="font-size:26px; padding-top:12px; border-top:1px solid #33434F;">Data checks</span>
+    </div>
+  </div>
+  <div class="conditional">
+    <div style="display:flex; align-items:baseline; gap:18px; margin-top:24px;">
+      <div style="width:10px; height:10px; background:#1D5C68; flex-shrink:0; align-self:center;"></div>
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68; white-space:nowrap;">From my work</span>
+      <span style="font-size:24px; line-height:1.4; color:#4A5561;">Flosonics Medical: integrated clinical and operational sources, automated ETL into SQL Server, maintained data dictionaries, validated leadership Power BI reporting. City of Greater Sudbury: PreHos scheduling and utilization data.</span>
+    </div>
+  </div>
+  <div style="margin-top:24px; padding-top:20px; border-top:1px solid #D8D4CA; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+    <span>Mihir Trivedi · HSN Decision Support Analyst II · #10169</span>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <div class="conditional">
+        <div style="display:flex; gap:6px;">
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#1D5C68;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+        </div>
+      </div>
+      <span style="color:#16212C;">06 / 09</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="07 Dashboard" data-speaker-notes="“I would prototype this with the Director using real questions from a recent operational meeting. If the team cannot get from a signal to a sensible next question, the dashboard needs work.” — All numbers on this slide are synthetic and illustrative; they do not represent HSN performance. Walk the path: program overview → trend and variance → drill-down → operational question. A rise in cancellations leads to a review of documented reasons and affected sessions, not an automatic conclusion about cause. Access context (Wait 2) sits beside efficiency measures." style="background:#F5F4EF; color:#16212C; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 56px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Step 07 · Dashboard</span>
+    <h2 style="margin:0; font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:64px; line-height:1.1; letter-spacing:-0.01em;">Show the Director a path from signal to action</h2>
+    <p style="margin:0; max-width:1400px; font-size:30px; line-height:1.4; color:#4A5561;">The first view should answer: what changed, where, and what do we examine next?</p>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:28px; background:#FFFFFF; border:1px solid #D8D4CA; border-radius:8px; padding:20px 26px 22px; display:flex; flex-direction:column; gap:18px; box-shadow:0 1px 2px rgba(22,33,44,0.06);">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:24px;">
+      <div style="display:flex; align-items:center; gap:18px;">
+        <span style="font-size:26px; font-weight:700;">Surgical Program · OR dashboard</span>
+        <span style="padding:4px 12px; background:#F4EADB; color:#8A5A14; border-radius:4px; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.02em; text-transform:uppercase;">Illustrative · synthetic data</span>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <span style="padding:4px 14px; border:1px solid #DEDBD2; border-radius:4px; font-size:24px; color:#3A4550;">Last 13 weeks</span>
+        <span style="padding:4px 14px; border:1px solid #DEDBD2; border-radius:4px; font-size:24px; color:#3A4550;">Service: All</span>
+        <span style="padding:4px 14px; border:1px solid #DEDBD2; border-radius:4px; font-size:24px; color:#3A4550;">Room: All</span>
+        <span style="padding:4px 14px; border:1px solid #DEDBD2; border-radius:4px; font-size:24px; color:#3A4550;">Urgency: All</span>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:36px repeat(6, minmax(0,1fr)); gap:14px;">
+      <span style="width:36px; height:36px; border-radius:50%; background:#1D5C68; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px;">1</span>
+      <div style="background:#F8F7F3; border:1px solid #E6E3DB; border-radius:6px; padding:12px 16px; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:24px; line-height:1.2; color:#4A5561; min-height:58px;">Completed cases</span>
+        <span style="font-size:40px; font-weight:600; line-height:1.15; font-variant-numeric:tabular-nums;">1,284</span>
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">▼ 2% vs prior</span>
+      </div>
+      <div style="background:#F8F7F3; border:1px solid #E6E3DB; border-radius:6px; padding:12px 16px; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:24px; line-height:1.2; color:#4A5561; min-height:58px;">First-case on-time starts</span>
+        <span style="font-size:40px; font-weight:600; line-height:1.15; font-variant-numeric:tabular-nums;">71%</span>
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">▲ 3 pts</span>
+      </div>
+      <div style="background:#FBF6EE; border:2px solid #8A5A14; border-radius:6px; padding:11px 15px; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:24px; line-height:1.2; color:#4A5561; min-height:58px;">Same-day cancellation rate</span>
+        <span style="font-size:40px; font-weight:600; line-height:1.15; font-variant-numeric:tabular-nums; color:#8A5A14;">6.8%</span>
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#8A5A14;">▲ 1.9 pts</span>
+      </div>
+      <div style="background:#F8F7F3; border:1px solid #E6E3DB; border-radius:6px; padding:12px 16px; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:24px; line-height:1.2; color:#4A5561; min-height:58px;">OR utilization, staffed time</span>
+        <span style="font-size:40px; font-weight:600; line-height:1.15; font-variant-numeric:tabular-nums;">82%</span>
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">— no change</span>
+      </div>
+      <div style="background:#F8F7F3; border:1px solid #E6E3DB; border-radius:6px; padding:12px 16px; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:24px; line-height:1.2; color:#4A5561; min-height:58px;">Median turnover</span>
+        <span style="font-size:40px; font-weight:600; line-height:1.15; font-variant-numeric:tabular-nums;">27 min</span>
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">▼ 2 min</span>
+      </div>
+      <div style="background:#F8F7F3; border:1px solid #E6E3DB; border-radius:6px; padding:12px 16px; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:24px; line-height:1.2; color:#4A5561; min-height:58px;">Wait 2: cases near target</span>
+        <span style="font-size:40px; font-weight:600; line-height:1.15; font-variant-numeric:tabular-nums;">46</span>
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">▲ 5 cases</span>
+      </div>
+    </div>
+    <div style="flex:1; min-height:0; display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.05fr); gap:16px;">
+      <div style="border:1px solid #E6E3DB; border-radius:6px; padding:14px 18px; display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:36px; height:36px; border-radius:50%; background:#1D5C68; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; flex-shrink:0;">2</span>
+            <span style="font-size:24px; font-weight:600;">Cancellation rate, weekly</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:22px; height:14px; background:rgba(29,92,104,0.16);"></div>
+            <span style="font-size:24px; color:#5B6570;">Baseline range</span>
+          </div>
+        </div>
+        <div style="position:relative; height:170px; margin-top:4px;">
+          <div style="position:absolute; left:64px; right:0; bottom:0; border-top:1px solid #9B968A;"></div>
+          <div style="position:absolute; left:64px; right:0; bottom:85px; border-top:1px dashed #DEDBD2;"></div>
+          <div style="position:absolute; left:64px; right:0; bottom:76px; height:19px; background:rgba(29,92,104,0.16);"></div>
+          <span style="position:absolute; left:0; bottom:-14px; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">0%</span>
+          <span style="position:absolute; left:0; bottom:71px; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">5%</span>
+          <div style="position:absolute; left:74px; right:6px; top:0; bottom:0; display:flex; align-items:flex-end; gap:10px;">
+            <div style="flex:1; height:83px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:90px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:78px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:87px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:94px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:82px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:88px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:85px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:92px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:87px; background:#A9C3C7;"></div>
+            <div style="flex:1; height:117px; background:#8A5A14;"></div>
+            <div style="flex:1; height:126px; background:#8A5A14;"></div>
+            <div style="flex:1; height:133px; background:#8A5A14;"></div>
+          </div>
+          <span style="position:absolute; right:0; top:-6px; font-size:24px; color:#8A5A14; font-weight:600;">W11–13 above range</span>
+        </div>
+        <div style="margin-left:74px; margin-right:6px; display:flex; justify-content:space-between; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+          <span>W1</span>
+          <span>W7</span>
+          <span>W13</span>
+        </div>
+      </div>
+      <div style="border:1px solid #E6E3DB; border-radius:6px; padding:14px 18px; display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="width:36px; height:36px; border-radius:50%; background:#1D5C68; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; flex-shrink:0;">3</span>
+          <span style="font-size:24px; font-weight:600;">By service · W11–13</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <span style="padding:2px 12px; background:#16212C; color:#FFFFFF; border-radius:4px; font-size:24px;">Service</span>
+          <span style="padding:2px 12px; border:1px solid #DEDBD2; border-radius:4px; font-size:24px; color:#4A5561;">Room</span>
+          <span style="padding:2px 12px; border:1px solid #DEDBD2; border-radius:4px; font-size:24px; color:#4A5561;">Urgency</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:4px;">
+          <div style="display:grid; grid-template-columns:170px 1fr 76px; gap:12px; align-items:center;">
+            <span style="font-size:24px; font-weight:600;">Orthopaedics</span>
+            <div style="height:18px; background:#EFEDE7;"><div style="width:100%; height:100%; background:#8A5A14;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right; color:#8A5A14;">11.2%</span>
+          </div>
+          <div style="display:grid; grid-template-columns:170px 1fr 76px; gap:12px; align-items:center;">
+            <span style="font-size:24px;">General</span>
+            <div style="height:18px; background:#EFEDE7;"><div style="width:71%; height:100%; background:#A9C3C7;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right;">7.9%</span>
+          </div>
+          <div style="display:grid; grid-template-columns:170px 1fr 76px; gap:12px; align-items:center;">
+            <span style="font-size:24px;">Urology</span>
+            <div style="height:18px; background:#EFEDE7;"><div style="width:54%; height:100%; background:#A9C3C7;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right;">6.1%</span>
+          </div>
+          <div style="display:grid; grid-template-columns:170px 1fr 76px; gap:12px; align-items:center;">
+            <span style="font-size:24px;">Gynaecology</span>
+            <div style="height:18px; background:#EFEDE7;"><div style="width:48%; height:100%; background:#A9C3C7;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right;">5.4%</span>
+          </div>
+          <div style="display:grid; grid-template-columns:170px 1fr 76px; gap:12px; align-items:center;">
+            <span style="font-size:24px;">Ophthalmology</span>
+            <div style="height:18px; background:#EFEDE7;"><div style="width:29%; height:100%; background:#A9C3C7;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right;">3.2%</span>
+          </div>
+        </div>
+      </div>
+      <div style="border:1px solid #E6E3DB; border-radius:6px; padding:14px 18px; display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="width:36px; height:36px; border-radius:50%; background:#1D5C68; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; flex-shrink:0;">4</span>
+          <span style="font-size:24px; font-weight:600;">Documented reasons · Ortho</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="display:grid; grid-template-columns:1fr 110px 36px; gap:12px; align-items:center;">
+            <span style="font-size:24px;">Patient condition</span>
+            <div style="height:14px; background:#EFEDE7;"><div style="width:100%; height:100%; background:#1D5C68;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right;">9</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 110px 36px; gap:12px; align-items:center;">
+            <span style="font-size:24px;">Bed availability</span>
+            <div style="height:14px; background:#EFEDE7;"><div style="width:78%; height:100%; background:#1D5C68;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right;">7</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 110px 36px; gap:12px; align-items:center;">
+            <span style="font-size:24px;">Case time overrun</span>
+            <div style="height:14px; background:#EFEDE7;"><div style="width:67%; height:100%; background:#1D5C68;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right;">6</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 110px 36px; gap:12px; align-items:center;">
+            <span style="font-size:24px;">Equipment</span>
+            <div style="height:14px; background:#EFEDE7;"><div style="width:33%; height:100%; background:#1D5C68;"></div></div>
+            <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; text-align:right;">3</span>
+          </div>
+        </div>
+        <div style="margin-top:auto; background:#F4EADB; border-radius:6px; padding:10px 16px; display:flex; flex-direction:column; gap:4px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#8A5A14;">Next question</span>
+          <span style="font-size:24px; line-height:1.3;">Review affected sessions with the OR team before concluding on cause.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:24px; padding-top:20px; border-top:1px solid #D8D4CA; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+    <span>Synthetic data for illustration only · not HSN performance</span>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <div class="conditional">
+        <div style="display:flex; gap:6px;">
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#1D5C68;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+        </div>
+      </div>
+      <span style="color:#16212C;">07 / 09</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="08 Validation &amp; UAT" data-speaker-notes="“I would ask users to challenge the dashboard with cases they know well, especially cancellations, urgent add-ons, and schedule changes. A technically correct calculation can still answer the wrong operational question.”" style="background:#F5F4EF; color:#16212C; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 56px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Step 08 · Validation &amp; UAT</span>
+    <h2 style="margin:0; font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:64px; line-height:1.1; letter-spacing:-0.01em;">Validate with users before launch</h2>
+    <p style="margin:0; max-width:1400px; font-size:30px; line-height:1.4; color:#4A5561;">Technical reconciliation and clinical interpretation are both acceptance tests.</p>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:40px; display:grid; grid-template-columns:minmax(0,1fr) 96px 560px; align-items:center;">
+    <div style="display:flex; flex-direction:column; gap:0; position:relative;">
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:8px; padding:30px 36px; display:grid; grid-template-columns:320px 1fr; gap:32px; align-items:start;">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570;">Technical check</span>
+          <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:42px; line-height:1.1;">Numbers match</span>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-size:26px; line-height:1.35; padding:0 0 12px;">Compare outputs with source records and existing reports</span>
+          <span style="font-size:26px; line-height:1.35; padding:12px 0 0; border-top:1px solid #E6E3DB;">Test edge cases and filters</span>
+        </div>
+      </div>
+      <div style="align-self:center; width:52px; height:52px; margin:-12px 0; z-index:1; border-radius:50%; background:#F5F4EF; border:2px solid #1D5C68; color:#1D5C68; display:flex; align-items:center; justify-content:center; font-size:32px; font-weight:600;">+</div>
+      <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:8px; padding:30px 36px; display:grid; grid-template-columns:320px 1fr; gap:32px; align-items:start;">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570;">Operational check</span>
+          <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:42px; line-height:1.1;">Meaning matches workflow</span>
+        </div>
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-size:26px; line-height:1.35; padding:0 0 12px;">Scheduling, OR leadership and clinical representatives review selected cases and interpretations</span>
+          <span style="font-size:26px; line-height:1.35; padding:12px 0 0; border-top:1px solid #E6E3DB;">Challenge it with known cases: cancellations, urgent add-ons, schedule changes</span>
+        </div>
+      </div>
+    </div>
+    <span style="text-align:center; font-size:48px; color:#1D5C68;">→</span>
+    <div style="background:#1D5C68; color:#FFFFFF; border-radius:8px; padding:40px 40px; display:flex; flex-direction:column; gap:20px;">
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#CFE0E2;">Acceptance</span>
+      <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:48px; line-height:1.1;">Approved release</span>
+      <span style="font-size:26px; line-height:1.35; padding-top:18px; border-top:1px solid rgba(255,255,255,0.28);">User acceptance testing against the decisions agreed in step 2</span>
+      <span style="font-size:26px; line-height:1.35; padding-top:18px; border-top:1px solid rgba(255,255,255,0.28);">Sign-off on definitions, limitations, and access</span>
+    </div>
+  </div>
+  <div class="conditional">
+    <div style="display:flex; align-items:center; gap:18px; margin-top:24px;">
+      <div style="width:10px; height:10px; background:#1D5C68; flex-shrink:0;"></div>
+      <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68; white-space:nowrap;">From my work</span>
+      <span style="font-size:24px; color:#4A5561;">Minax: led requirements gathering and UAT. Flosonics Medical: validated dashboard outputs with stakeholders before release.</span>
+    </div>
+  </div>
+  <div style="margin-top:24px; padding-top:20px; border-top:1px solid #D8D4CA; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+    <span>Mihir Trivedi · HSN Decision Support Analyst II · #10169</span>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <div class="conditional">
+        <div style="display:flex; gap:6px;">
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#1D5C68;"></div>
+          <div style="width:28px; height:6px; background:#D8D4CA;"></div>
+        </div>
+      </div>
+      <span style="color:#16212C;">08 / 09</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="09 Governance" data-speaker-notes="“I would treat launch as the start of a decision-support service. The Director should know when the data was refreshed, who owns each definition, and how to raise a discrepancy. We would improve the dashboard based on how the team actually uses it.” — What the panel should remember: (1) I start with the decision and the clinical workflow, then choose the measures. (2) I can build the underlying pipeline: SQL, integration, documented definitions, Power BI. (3) I take validation seriously: reconcile numbers and ask operational experts whether they mean what the report says. (4) I work with technical and nontechnical stakeholders (Flosonics, City of Greater Sudbury). (5) I know the boundary of my experience and would learn HSN’s OR operations from its teams." style="background:#F5F4EF; color:#16212C; font-family:'Public Sans', system-ui, sans-serif; padding:88px 120px 56px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div style="display:flex; flex-direction:column; gap:16px;">
+    <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68;">Step 09 · Governance &amp; improvement</span>
+    <h2 style="margin:0; font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:64px; line-height:1.1; letter-spacing:-0.01em;">Launch, govern, and improve it</h2>
+    <p style="margin:0; max-width:1400px; font-size:30px; line-height:1.4; color:#4A5561;">The dashboard needs an owner and a review routine after publication.</p>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:40px; display:flex; flex-direction:column; gap:36px;">
+    <div style="display:flex; flex-direction:column;">
+      <div style="display:grid; grid-template-columns:1fr 56px 1fr 56px 1fr 56px 1fr; align-items:stretch;">
+        <div style="background:#1D5C68; color:#FFFFFF; border-radius:6px; padding:20px 24px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#CFE0E2;">01</span>
+          <span style="font-size:28px; font-weight:600; line-height:1.25;">Release a focused first version</span>
+        </div>
+        <span style="align-self:center; text-align:center; font-size:36px; color:#1D5C68;">→</span>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:20px 24px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">02</span>
+          <span style="font-size:28px; font-weight:600; line-height:1.25;">Review in program meeting</span>
+        </div>
+        <span style="align-self:center; text-align:center; font-size:36px; color:#1D5C68;">→</span>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:20px 24px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">03</span>
+          <span style="font-size:28px; font-weight:600; line-height:1.25;">Log questions</span>
+        </div>
+        <span style="align-self:center; text-align:center; font-size:36px; color:#1D5C68;">→</span>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:20px 24px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">04</span>
+          <span style="font-size:28px; font-weight:600; line-height:1.25;">Improve definitions, data, or workflow</span>
+        </div>
+      </div>
+      <div style="position:relative; height:56px; margin:0 12.5% 0 12.5%;">
+        <div style="position:absolute; left:0; right:0; top:0; bottom:18px; border:2px dashed #1D5C68; border-top:none; border-radius:0 0 10px 10px;"></div>
+        <span style="position:absolute; left:50%; bottom:0; transform:translateX(-50%); padding:0 16px; background:#F5F4EF; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#1D5C68; white-space:nowrap;">Prioritize the next measures or fixes</span>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; gap:40px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; letter-spacing:0.04em; text-transform:uppercase; color:#5B6570;">Documented at launch</span>
+        <span style="font-size:24px; color:#4A5561;">Approved, role-based access · aggregate views appropriate to each audience</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:14px;">
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:18px 22px; font-size:26px; font-weight:600;">Refresh timing</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:18px 22px; font-size:26px; font-weight:600;">KPI definitions</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:18px 22px; font-size:26px; font-weight:600;">Source lineage</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:18px 22px; font-size:26px; font-weight:600;">Access permissions</div>
+        <div style="background:#FFFFFF; border:1px solid #DEDBD2; border-radius:6px; padding:18px 22px; font-size:26px; font-weight:600;">Issue ownership</div>
+      </div>
+    </div>
+    <div style="margin-top:auto; display:flex; align-items:baseline; gap:40px; flex-wrap:wrap;">
+      <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:44px; line-height:1.2; color:#1D5C68;">Start with the decisions.</span>
+      <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:44px; line-height:1.2; color:#1D5C68;">Make the data trustworthy.</span>
+      <span style="font-family:'Source Serif 4', Georgia, serif; font-weight:600; font-size:44px; line-height:1.2; color:#1D5C68;">Design for action.</span>
+    </div>
+  </div>
+  <div style="margin-top:24px; padding-top:20px; border-top:1px solid #D8D4CA; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:24px; color:#5B6570;">
+    <span>Mihir Trivedi · HSN Decision Support Analyst II · #10169</span>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <div class="conditional">
+        <div style="display:flex; gap:6px;">
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#9DB9BE;"></div>
+          <div style="width:28px; height:6px; background:#1D5C68;"></div>
+        </div>
+      </div>
+      <span style="color:#16212C;">09 / 09</span>
+    </div>
+  </div>
+</section>
+
+</div>
+<nav class="deck-controls" aria-label="Presentation navigation">
+  <button id="previousButton" type="button" aria-label="Previous slide">← <span>Previous</span></button>
+  <button id="slideNumber" class="slide-number" type="button" aria-label="Return to slide 1">01 / 09</button>
+  <button id="nextButton" type="button" aria-label="Next slide"><span>Next</span> →</button>
+</nav>
+<noscript>This presentation requires JavaScript for slide navigation. The PowerPoint remains available from the download button.</noscript>
+<script src="./app.js"></script>
+</body>
+</html>

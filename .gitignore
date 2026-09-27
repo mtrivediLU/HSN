@@ -1,0 +1,16 @@
+# Private interview/source materials must never be published.
+*Resume*.pdf
+*resume*.pdf
+*Job_Description*
+*job-description*
+*Developer Handoff*
+*scratchpad*
+*.zip
+claude-export*/
+uploads/
+
+# Local tooling and OS files.
+node_modules/
+.DS_Store
+test-results/
+playwright-report/
