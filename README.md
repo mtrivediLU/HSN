@@ -14,7 +14,7 @@ Then open <http://localhost:8000>. Use the on-screen controls or keyboard arrow 
 
 ## Deploy
 
-Pushing to `main` runs [the GitHub Pages workflow](.github/workflows/deploy-pages.yml), which enables Pages with GitHub Actions when needed. The expected site URL is:
+Pushing to `main` runs [the GitHub Pages workflow](.github/workflows/deploy-pages.yml). This repository is configured to use GitHub Actions as its Pages source. For a new fork, select **GitHub Actions** once under **Settings → Pages**. The expected site URL is:
 
 <https://mtrivedilu.github.io/HSN/>
 
