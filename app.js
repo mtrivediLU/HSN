@@ -5,13 +5,14 @@
   const nextButton = document.querySelector('#nextButton');
   const slideNumber = document.querySelector('#slideNumber');
   const homeButton = document.querySelector('#homeButton');
+  const anchorIds = ['opening', 'decisions', 'measures', 'trust-the-data', 'foundation', 'validate', 'dashboard', 'after-launch'];
   let currentIndex = 0;
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
   slides.forEach((slide, index) => {
     const number = String(index + 1).padStart(2, '0');
     slide.classList.add('slide');
-    slide.id = `step-${number}`;
+    slide.id = anchorIds[index] || `step-${number}`;
     slide.dataset.step = String(index + 1);
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'slide');
@@ -19,9 +20,12 @@
   });
 
   function indexFromHash() {
-    const match = location.hash.match(/^#step-(\d{2})$/);
-    if (!match) return 0;
-    return Math.min(Math.max(Number(match[1]) - 1, 0), slides.length - 1);
+    const hash = location.hash.slice(1);
+    const semanticIndex = anchorIds.indexOf(hash);
+    if (semanticIndex >= 0) return semanticIndex;
+    const legacyMatch = hash.match(/^step-(\d{2})$/);
+    if (!legacyMatch) return 0;
+    return Math.min(Math.max(Number(legacyMatch[1]) - 1, 0), slides.length - 1);
   }
 
   function updateScale() {
