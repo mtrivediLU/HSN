@@ -5,7 +5,7 @@
   const nextButton = document.querySelector('#nextButton');
   const slideNumber = document.querySelector('#slideNumber');
   const homeButton = document.querySelector('#homeButton');
-  const anchorIds = ['opening', 'decisions', 'measures', 'trust-the-data', 'foundation', 'validate', 'dashboard', 'after-launch'];
+  const anchorIds = ['opening', 'who-decides', 'definition', 'trust-the-timeline', 'pipeline', 'validate', 'signal-to-decision', 'my-role'];
   let currentIndex = 0;
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 

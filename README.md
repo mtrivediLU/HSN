@@ -22,7 +22,7 @@ The workflow packages only the public site files. Relative URLs are used through
 
 ## Public files
 
-- `index.html` — Claude Design V2 slide content and inline visual composition
+- `index.html` — final Claude Design V3 slide content and inline visual composition
 - `styles.css` — presentation shell and responsive reflow rules
 - `app.js` — minimal slide navigation and keyboard controls
 - `downloads/Mihir_Trivedi_HSN_OR_Dashboard.pptx` — downloadable PowerPoint

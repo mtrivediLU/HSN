@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
-<meta name="description" content="Mihir Trivedi's HSN Decision Support Analyst II interview presentation: preparing an operating room dashboard people will use.">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&amp;family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<meta name="description" content="Mihir Trivedi's HSN Decision Support Analyst II interview presentation: from a Surgical Program question to a decision.">
 <title>HSN Operating Room Dashboard · Interview Presentation</title>
 <link rel="stylesheet" href="./styles.css">
 </head>
@@ -19,450 +19,576 @@
 </header>
 <div id="deck" class="deck" aria-live="polite">
 
-<section data-label="01 Opening" data-speaker-notes="“My aim would be a tool the Director can bring into an operational meeting. I’ll show how I would decide what it needs to answer, establish trust in the numbers, and test whether the team can use it.” — Introduce the recurring hypothetical: if same-day cancellations rise, how would we know where to look and what to discuss with the OR team?" style="background:#102233; color:#F3F5F6; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:96px 128px 88px; box-sizing:border-box; display:flex; flex-direction:column;">
-  <span style="font-size:26px; color:#A7B6C4; letter-spacing:0.01em;">Health Sciences North · Decision Support Analyst II · Surgical Program case</span>
-  <div style="flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; gap:44px;">
-    <h1 style="margin:0; max-width:1400px; font-size:108px; font-weight:600; line-height:1.02; letter-spacing:-0.025em; text-wrap:balance;">Preparing an OR dashboard people will use</h1>
-    <p style="margin:0; max-width:1200px; font-size:42px; font-weight:400; line-height:1.3; color:#D5DEE6; text-wrap:balance;">What should the Surgical Program be able to decide with this dashboard?</p>
-  </div>
-  <div style="display:grid; grid-template-columns:minmax(0,1fr) auto; gap:96px; align-items:end; padding-top:40px; border-top:1px solid #2A4155;">
-    <div style="display:flex; flex-direction:column; gap:12px; max-width:980px;">
-      <span style="font-size:24px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#E7A27A;">A question we’ll follow</span>
-      <span style="font-size:32px; line-height:1.4; color:#F3F5F6; text-wrap:pretty;">If same-day cancellations rise, how would we know where to look and what to discuss with the OR team?</span>
-    </div>
-    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:22px;">
-      <div style="display:flex; align-items:flex-end; gap:8px; height:64px;">
-        <div style="width:10px; height:30px; background:#3E5A73;"></div>
-        <div style="width:10px; height:34px; background:#3E5A73;"></div>
-        <div style="width:10px; height:28px; background:#3E5A73;"></div>
-        <div style="width:10px; height:32px; background:#3E5A73;"></div>
-        <div style="width:10px; height:36px; background:#3E5A73;"></div>
-        <div style="width:10px; height:30px; background:#3E5A73;"></div>
-        <div style="width:10px; height:33px; background:#3E5A73;"></div>
-        <div style="width:10px; height:31px; background:#3E5A73;"></div>
-        <div style="width:10px; height:35px; background:#3E5A73;"></div>
-        <div style="width:10px; height:32px; background:#3E5A73;"></div>
-        <div style="width:10px; height:46px; background:#D9895A;"></div>
-        <div style="width:10px; height:54px; background:#D9895A;"></div>
-        <div style="width:10px; height:62px; background:#D9895A;"></div>
-      </div>
-      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
-        <span style="font-size:32px; font-weight:600;">Mihir Trivedi</span>
-        <span style="font-size:24px; color:#A7B6C4;">mihirtrivedi.tech</span>
-      </div>
+<section data-label="01 Opening" data-screen-label="01" data-speaker-notes="“The case asks for an OR dashboard. I want to show you the whole job around it, because a dashboard is only one stage of Decision Support. I'll follow one question the whole way through: same-day cancellations are rising, where do we look and what do we bring to the OR team. At each stage I'll tell you what I would do personally, and where I've done it before. I haven't worked with OR data, so I'll also be clear about what I would need to learn from your teams.” (about 30 seconds)" style="background:#102233; color:#F3F5F6; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:88px 112px 64px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <span style="font-size:26px; color:#A7B6C4;">Health Sciences North · Decision Support Analyst II (#10169) · Surgical Program case</span>
+  <div style="flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; gap:56px;">
+    <h1 style="margin:0; max-width:1500px; font-size:100px; font-weight:600; line-height:1.03; letter-spacing:-0.025em; text-wrap:balance;">From a Surgical Program question to a decision they can act on</h1>
+    <div style="display:flex; flex-direction:column; gap:14px; max-width:1300px;">
+      <span style="font-size:26px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#E7A27A;">The case we'll follow</span>
+      <span style="font-size:42px; line-height:1.3; color:#F3F5F6; text-wrap:balance;">Same-day cancellations are rising. Where do we look, and what do we bring to the OR team?</span>
     </div>
   </div>
-</section>
-
-<section data-label="02 Decisions" data-speaker-notes="“I would speak with the Director and OR manager, then walk through a few actual cases with scheduling and clinical staff. I used that approach with program staff when working with PreHos data at the City: the meaning of a field became clearer when we followed the work it represented. At HSN, I would establish the audience, scope, and first use case with its own team.” — Name participants aloud as relevant: Director, OR manager, surgeons, anesthesia, nursing, scheduling, quality, Decision Support." style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:96px 128px 88px; box-sizing:border-box; display:flex; flex-direction:column;">
-  <div class="conditional">
-    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
-      <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
-      <span style="font-size:24px; font-weight:600; color:#9A4F22;">If cancellations rise: where do they enter the workflow?</span>
-    </div>
+  <div style="display:flex; gap:36px; margin-bottom:22px;">
+    <div style="display:flex; align-items:center; gap:10px;"><div style="width:14px; height:14px; border-radius:50%; background:#8FB8E0;"></div><span style="font-size:24px; color:#D5DEE6;">What I do</span></div>
+    <div style="display:flex; align-items:center; gap:10px;"><div style="width:14px; height:14px; border-radius:50%; background:#E7A27A;"></div><span style="font-size:24px; color:#D5DEE6;">The case signal and the decision</span></div>
+    <div style="display:flex; align-items:center; gap:10px;"><div style="width:14px; height:14px; border-radius:50%; background:#8A9BAB;"></div><span style="font-size:24px; color:#D5DEE6;">Partners and context</span></div>
   </div>
-  <div style="flex:1; min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 820px; gap:120px;">
-    <div style="display:flex; flex-direction:column; gap:28px;">
-      <h2 style="margin:0; font-size:64px; font-weight:600; line-height:1.08; letter-spacing:-0.02em; text-wrap:balance;">The decisions behind the request</h2>
-      <p style="margin:0; font-size:34px; line-height:1.4; color:#3D4852; text-wrap:pretty;">Learn the OR workflow and the Director’s meeting rhythm before selecting metrics.</p>
-      <div style="margin-top:auto; display:flex; flex-direction:column; gap:18px; max-width:620px;">
-        <div style="width:56px; height:3px; background:#2F5D8A;"></div>
-        <span style="font-size:30px; font-weight:500; line-height:1.4; color:#2F5D8A; text-wrap:pretty;">I follow a few real cases through the work before I trust what a field means.</span>
-      </div>
-    </div>
-    <div style="display:flex; flex-direction:column; justify-content:center; gap:44px;">
-      <div style="display:grid; grid-template-columns:88px 1fr; align-items:baseline;">
-        <span style="font-size:72px; font-weight:300; line-height:1; color:#2F5D8A;">1</span>
-        <span style="font-size:40px; font-weight:500; line-height:1.25;">What decisions happen daily or weekly?</span>
-      </div>
-      <div style="display:grid; grid-template-columns:88px 1fr; align-items:baseline;">
-        <span style="font-size:72px; font-weight:300; line-height:1; color:#2F5D8A;">2</span>
-        <span style="font-size:40px; font-weight:500; line-height:1.25;">Where do delays or cancellations enter the workflow?</span>
-      </div>
-      <div style="display:grid; grid-template-columns:88px 1fr; align-items:baseline;">
-        <span style="font-size:72px; font-weight:300; line-height:1; color:#2F5D8A;">3</span>
-        <span style="font-size:40px; font-weight:500; line-height:1.25;">Which current numbers does the team trust?</span>
-      </div>
-    </div>
+  <div style="position:relative; display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:16px; padding-top:22px;">
+    <div style="position:absolute; left:0; right:0; top:0; height:2px; background:#3E5A73;"></div>
+    <div style="position:relative; display:flex; flex-direction:column; gap:0;"><div style="position:absolute; left:0; top:-30px; width:14px; height:14px; border-radius:50%; background:#102233; border:2px solid #8FB8E0;"></div><span style="font-size:26px; color:#F3F5F6;">Question</span></div>
+    <div style="position:relative;"><div style="position:absolute; left:0; top:-30px; width:14px; height:14px; border-radius:50%; background:#102233; border:2px solid #8FB8E0;"></div><span style="font-size:26px; color:#F3F5F6;">Source</span></div>
+    <div style="position:relative;"><div style="position:absolute; left:0; top:-30px; width:14px; height:14px; border-radius:50%; background:#102233; border:2px solid #8FB8E0;"></div><span style="font-size:26px; color:#F3F5F6;">SQL / ETL / Model</span></div>
+    <div style="position:relative;"><div style="position:absolute; left:0; top:-30px; width:14px; height:14px; border-radius:50%; background:#102233; border:2px solid #8FB8E0;"></div><span style="font-size:26px; color:#F3F5F6;">Power BI / SSRS</span></div>
+    <div style="position:relative;"><div style="position:absolute; left:0; top:-30px; width:14px; height:14px; border-radius:50%; background:#102233; border:2px solid #8FB8E0;"></div><span style="font-size:26px; color:#F3F5F6;">Validate</span></div>
+    <div style="position:relative;"><div style="position:absolute; left:0; top:-30px; width:14px; height:14px; border-radius:50%; background:#102233; border:2px solid #8FB8E0;"></div><span style="font-size:26px; color:#F3F5F6;">Analyze</span></div>
+    <div style="position:relative;"><div style="position:absolute; left:0; top:-30px; width:14px; height:14px; border-radius:50%; background:#E7A27A; border:2px solid #E7A27A;"></div><span style="font-size:26px; color:#F3F5F6;">Decide</span></div>
   </div>
-  <div style="margin-top:64px; position:relative; height:104px;">
-    <div style="position:absolute; left:0; right:0; top:40px; height:2px; background:#C9CFD4;"></div>
-    <div style="position:absolute; left:25%; width:50%; top:39px; height:4px; background:#B8612E;"></div>
-    <span style="position:absolute; left:50%; top:0; transform:translateX(-50%); font-size:24px; font-weight:600; color:#9A4F22; white-space:nowrap;">Where do cancellations enter?</span>
-    <div style="position:absolute; left:0; top:32px; display:flex; flex-direction:column; align-items:flex-start; gap:18px;">
-      <div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div>
-      <span style="font-size:26px; color:#3D4852;">Booking</span>
-    </div>
-    <div style="position:absolute; left:25%; top:32px; transform:translateX(-9px); display:flex; flex-direction:column; align-items:flex-start; gap:18px;">
-      <div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div>
-      <span style="font-size:26px; color:#3D4852;">Scheduling</span>
-    </div>
-    <div style="position:absolute; left:50%; top:32px; transform:translateX(-9px); display:flex; flex-direction:column; align-items:flex-start; gap:18px;">
-      <div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div>
-      <span style="font-size:26px; color:#3D4852;">Day of surgery</span>
-    </div>
-    <div style="position:absolute; left:75%; top:32px; transform:translateX(-9px); display:flex; flex-direction:column; align-items:flex-start; gap:18px;">
-      <div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div>
-      <span style="font-size:26px; color:#3D4852;">In the OR</span>
-    </div>
-    <div style="position:absolute; right:0; top:32px; display:flex; flex-direction:column; align-items:flex-end; gap:18px;">
-      <div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div>
-      <span style="font-size:26px; color:#3D4852;">Completion</span>
-    </div>
-  </div>
-</section>
-
-<section data-label="03 Measures" data-speaker-notes="“For each measure, I would agree on the event, calculation, exclusions, reporting period, and owner. ‘First case on time,’ for example, depends on what counts as the start and which cases qualify. I would use Ontario Health definitions as a reference, then confirm the local workflow and reporting requirements with HSN. We would establish a baseline before choosing targets.” — The full KPI dictionary stays as working documentation." style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:96px 128px 88px; box-sizing:border-box; display:flex; flex-direction:column;">
-  <div class="conditional">
-    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
-      <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
-      <span style="font-size:24px; font-weight:600; color:#9A4F22;">If cancellations rise: what exactly counts as a same-day cancellation?</span>
-    </div>
-  </div>
-  <div style="display:flex; flex-direction:column; gap:24px; max-width:1300px;">
-    <h2 style="margin:0; font-size:64px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Measures that answer those decisions</h2>
-    <p style="margin:0; font-size:34px; line-height:1.4; color:#3D4852;">A small set of agreed measures gives the team a common language.</p>
-  </div>
-  <div style="flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center;">
-    <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:56px;">
-      <div style="display:flex; flex-direction:column; gap:18px; padding-top:28px; border-top:4px solid #17222D;">
-        <span style="font-size:46px; font-weight:600; line-height:1.1; letter-spacing:-0.01em;">Completed cases</span>
-        <span style="font-size:28px; line-height:1.35; color:#5F6A74;">Is activity changing, and where?</span>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:18px; padding-top:28px; border-top:4px solid #17222D;">
-        <span style="font-size:46px; font-weight:600; line-height:1.1; letter-spacing:-0.01em;">First-case starts</span>
-        <span style="font-size:28px; line-height:1.35; color:#5F6A74;">Where should we look at morning delays?</span>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:18px; padding-top:28px; border-top:4px solid #B8612E;">
-        <span style="font-size:46px; font-weight:600; line-height:1.1; letter-spacing:-0.01em; color:#9A4F22;">Same-day cancellations</span>
-        <span style="font-size:28px; line-height:1.35; color:#5F6A74;">Which disruptions may be preventable?</span>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:18px; padding-top:28px; border-top:4px solid #17222D;">
-        <span style="font-size:46px; font-weight:600; line-height:1.1; letter-spacing:-0.01em;">Utilization of available OR time</span>
-        <span style="font-size:28px; line-height:1.35; color:#5F6A74;">How is usable capacity being used?</span>
-      </div>
-    </div>
-    <div style="margin-top:56px; height:28px; border:2px solid #C9CFD4; border-top:none; border-radius:0 0 14px 14px;"></div>
-    <div style="margin-top:28px; display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap;">
-      <span style="font-size:28px; font-weight:600; margin-right:10px;">Agree for each measure</span>
-      <span style="padding:8px 22px; border:1.5px solid #9AA7B3; border-radius:999px; font-size:28px;">Event</span>
-      <span style="padding:8px 22px; border:1.5px solid #9AA7B3; border-radius:999px; font-size:28px;">Calculation</span>
-      <span style="padding:8px 22px; border:1.5px solid #9AA7B3; border-radius:999px; font-size:28px;">Exclusions</span>
-      <span style="padding:8px 22px; border:1.5px solid #9AA7B3; border-radius:999px; font-size:28px;">Reporting period</span>
-      <span style="padding:8px 22px; border:1.5px solid #9AA7B3; border-radius:999px; font-size:28px;">Owner</span>
-    </div>
-  </div>
-  <span style="font-size:28px; line-height:1.4; color:#5F6A74;">Turnover, Wait 2, and safety measures follow where scope and data support them.</span>
-</section>
-
-<section data-label="04 Trust the data" data-speaker-notes="“I would confirm which HSN system owns each event rather than assume a system named in the JD holds the OR record. Then I would check missing or reversed times, rescheduled cases, cancellation coding, and room closures against trusted reports. If those records do not reconcile, I would explain the gap before showing a utilization figure.”" style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:96px 128px 88px; box-sizing:border-box; display:flex; flex-direction:column;">
-  <div class="conditional">
-    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
-      <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
-      <span style="font-size:24px; font-weight:600; color:#9A4F22;">If cancellations rise: is a cancelled case recorded the same way everywhere?</span>
-    </div>
-  </div>
-  <div style="display:flex; flex-direction:column; gap:24px; max-width:1300px;">
-    <h2 style="margin:0; font-size:64px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Can we trust the case timeline?</h2>
-    <p style="margin:0; font-size:34px; line-height:1.4; color:#3D4852;">Source mapping and data quality are one practical investigation.</p>
-  </div>
-  <div style="flex:1; min-height:0; margin-top:56px; display:grid; grid-template-columns:minmax(0,1fr) 560px; gap:112px; align-items:center;">
-    <div style="position:relative; display:flex; flex-direction:column;">
-      <div style="position:absolute; left:calc(260px + (100% - 260px) * 0.54); top:-8px; bottom:-8px; width:0; border-left:2px dashed #2F5D8A;"></div>
-      <span style="position:absolute; left:calc(260px + (100% - 260px) * 0.54); top:-52px; transform:translateX(-50%); font-size:24px; font-weight:600; color:#2F5D8A; white-space:nowrap;">One case</span>
-      <div style="display:grid; grid-template-columns:260px 1fr; align-items:center; height:104px; border-bottom:1px solid #E3E6E8;">
-        <span style="font-size:30px; font-weight:600;">Schedule</span>
-        <div style="position:relative; height:100%;">
-          <div style="position:absolute; left:0; right:0; top:62px; height:2px; background:#C9CFD4;"></div>
-          <div style="position:absolute; left:18%; top:54px; width:18px; height:18px; margin-left:-9px; border-radius:50%; background:#17222D;"></div>
-          <span style="position:absolute; left:18%; top:14px; transform:translateX(-50%); font-size:24px; color:#5F6A74; white-space:nowrap;">Booked</span>
-          <div style="position:absolute; left:38%; top:54px; width:18px; height:18px; margin-left:-9px; border-radius:50%; background:#17222D;"></div>
-          <span style="position:absolute; left:38%; top:14px; transform:translateX(-50%); font-size:24px; color:#5F6A74; white-space:nowrap;">Scheduled start</span>
-        </div>
-      </div>
-      <div style="display:grid; grid-template-columns:260px 1fr; align-items:center; height:104px; border-bottom:1px solid #E3E6E8;">
-        <span style="font-size:30px; font-weight:600;">Case times</span>
-        <div style="position:relative; height:100%;">
-          <div style="position:absolute; left:0; right:0; top:62px; height:2px; background:#C9CFD4;"></div>
-          <div style="position:absolute; left:62%; top:54px; width:18px; height:18px; margin-left:-9px; border-radius:50%; background:#17222D;"></div>
-          <span style="position:absolute; left:62%; top:14px; transform:translateX(-50%); font-size:24px; color:#5F6A74; white-space:nowrap;">In room</span>
-          <div style="position:absolute; left:90%; top:54px; width:18px; height:18px; margin-left:-9px; border-radius:50%; background:#17222D;"></div>
-          <span style="position:absolute; left:90%; top:14px; transform:translateX(-50%); font-size:24px; color:#5F6A74; white-space:nowrap;">Out</span>
-        </div>
-      </div>
-      <div style="display:grid; grid-template-columns:260px 1fr; align-items:center; height:104px; border-bottom:1px solid #E3E6E8;">
-        <span style="font-size:30px; font-weight:600;">Cancellations</span>
-        <div style="position:relative; height:100%;">
-          <div style="position:absolute; left:0; right:0; top:62px; height:2px; background:#C9CFD4;"></div>
-          <div style="position:absolute; left:28%; top:52px; width:22px; height:22px; margin-left:-11px; border-radius:50%; background:#F7F7F4; border:3px solid #B8612E; box-sizing:border-box;"></div>
-          <span style="position:absolute; left:28%; top:14px; transform:translateX(-50%); font-size:24px; font-weight:600; color:#9A4F22; white-space:nowrap;">Cancelled? Reason?</span>
-        </div>
-      </div>
-      <div style="display:grid; grid-template-columns:260px 1fr; align-items:center; height:104px;">
-        <span style="font-size:30px; font-weight:600;">Room availability</span>
-        <div style="position:relative; height:100%;">
-          <div style="position:absolute; left:6%; right:4%; top:56px; height:14px; border-radius:7px; background:#D6E1EC;"></div>
-          <span style="position:absolute; left:6%; top:14px; font-size:24px; color:#5F6A74; white-space:nowrap;">Staffed, available time</span>
-        </div>
-      </div>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:36px;">
-      <div style="display:flex; flex-direction:column; gap:26px;">
-        <div style="display:flex; flex-direction:column; gap:4px;">
-          <span style="font-size:36px; font-weight:600;">Same case</span>
-          <span style="font-size:26px; line-height:1.35; color:#5F6A74;">Identifiers link across sources</span>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:4px;">
-          <span style="font-size:36px; font-weight:600;">Meaningful times</span>
-          <span style="font-size:26px; line-height:1.35; color:#5F6A74;">No missing or reversed events</span>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:4px;">
-          <span style="font-size:36px; font-weight:600;">Reconciled totals</span>
-          <span style="font-size:26px; line-height:1.35; color:#5F6A74;">Match trusted operational reports</span>
-        </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:18px; padding-top:32px; border-top:1px solid #C9CFD4;">
-        <span style="font-size:30px; font-weight:500; line-height:1.4; color:#2F5D8A; text-wrap:pretty;">If the records don’t reconcile, I explain the gap before showing a utilization figure.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section data-label="05 Foundation" data-speaker-notes="“I would use SQL to connect records at the right level, document the mappings, and calculate each approved KPI consistently in Power BI. This is familiar work for me. At Flosonics, I brought clinical and operational sources together, maintained field mappings, and validated leadership reporting. The HSN-specific definitions would come from its surgical and Decision Support teams.” — Be ready for panel questions on grain, refresh design and data checks." style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:96px 128px 88px; box-sizing:border-box; display:flex; flex-direction:column;">
-  <div class="conditional">
-    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
-      <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
-      <span style="font-size:24px; font-weight:600; color:#9A4F22;">If cancellations rise: every view counts each cancellation the same way.</span>
-    </div>
-  </div>
-  <div style="display:flex; flex-direction:column; gap:24px; max-width:1300px;">
-    <h2 style="margin:0; font-size:64px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">A repeatable model and a working prototype</h2>
-    <p style="margin:0; font-size:34px; line-height:1.4; color:#3D4852;">Build approved measures once so every view tells the same story.</p>
-  </div>
-  <div style="flex:1; min-height:0; display:grid; grid-template-columns:400px 56px 96px 260px 96px minmax(0,1fr); align-items:center;">
-    <div style="display:flex; flex-direction:column; gap:40px;">
-      <div style="display:flex; align-items:center; gap:18px;">
-        <div style="width:16px; height:16px; background:#2F5D8A; flex-shrink:0;"></div>
-        <span style="font-size:36px; font-weight:600;">Case record</span>
-      </div>
-      <div style="display:flex; align-items:center; gap:18px;">
-        <div style="width:16px; height:16px; background:#B8612E; flex-shrink:0;"></div>
-        <span style="font-size:36px; font-weight:600;">Cancellation record</span>
-      </div>
-      <div style="display:flex; align-items:center; gap:18px;">
-        <div style="width:16px; height:16px; background:#2F5D8A; flex-shrink:0;"></div>
-        <span style="font-size:36px; font-weight:600;">Room availability</span>
-      </div>
-    </div>
-    <div style="height:210px; border:2px solid #9AA7B3; border-left:none; border-radius:0 16px 16px 0;"></div>
-    <div style="display:flex; align-items:center;">
-      <div style="flex:1; height:2px; background:#9AA7B3;"></div>
-      <div style="width:0; height:0; border-left:14px solid #9AA7B3; border-top:9px solid transparent; border-bottom:9px solid transparent;"></div>
-    </div>
-    <div style="width:260px; height:260px; border-radius:50%; background:#102233; color:#F3F5F6; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; text-align:center;">
-      <span style="font-size:36px; font-weight:600; line-height:1.1;">Agreed measures</span>
-      <span style="font-size:24px; color:#A7B6C4;">calculated once</span>
-    </div>
-    <div style="display:flex; align-items:center;">
-      <div style="flex:1; height:2px; background:#9AA7B3;"></div>
-      <div style="width:0; height:0; border-left:14px solid #9AA7B3; border-top:9px solid transparent; border-bottom:9px solid transparent;"></div>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:18px;">
-      <div style="background:#FFFFFF; border:1px solid #DCDFE1; border-radius:12px; padding:22px; display:flex; flex-direction:column; gap:14px; box-shadow:0 12px 32px rgba(16,34,51,0.08);">
-        <div style="display:flex; gap:10px;">
-          <div style="width:34%; height:14px; border-radius:7px; background:#DCDFE1;"></div>
-          <div style="flex:1;"></div>
-          <div style="width:14%; height:14px; border-radius:7px; background:#E9ECEE;"></div>
-          <div style="width:14%; height:14px; border-radius:7px; background:#E9ECEE;"></div>
-        </div>
-        <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:14px;">
-          <div style="height:150px; border-radius:8px; background:#F1F4F7; display:flex; align-items:flex-end; gap:8px; padding:16px;">
-            <div style="flex:1; height:44%; background:#B9C9D8;"></div>
-            <div style="flex:1; height:50%; background:#B9C9D8;"></div>
-            <div style="flex:1; height:42%; background:#B9C9D8;"></div>
-            <div style="flex:1; height:48%; background:#B9C9D8;"></div>
-            <div style="flex:1; height:46%; background:#B9C9D8;"></div>
-            <div style="flex:1; height:66%; background:#D9895A;"></div>
-            <div style="flex:1; height:74%; background:#D9895A;"></div>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:10px; justify-content:center;">
-            <div style="width:90%; height:14px; border-radius:7px; background:#D9895A;"></div>
-            <div style="width:60%; height:14px; border-radius:7px; background:#B9C9D8;"></div>
-            <div style="width:48%; height:14px; border-radius:7px; background:#B9C9D8;"></div>
-            <div style="width:32%; height:14px; border-radius:7px; background:#B9C9D8;"></div>
-          </div>
-        </div>
-      </div>
-      <span style="font-size:36px; font-weight:600;">Prototype</span>
-    </div>
-  </div>
-  <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:96px; align-items:end; padding-top:32px; border-top:1px solid #C9CFD4;">
-    <span style="font-size:30px; font-weight:500; line-height:1.4; color:#2F5D8A; text-wrap:pretty;">I own the SQL and the model underneath. HSN’s surgical and Decision Support teams own the definitions.</span>
-    <span style="font-size:28px; line-height:1.4; color:#5F6A74; text-align:right;">Definitions and exceptions documented.</span>
-  </div>
-</section>
-
-<section data-label="06 Validate with users" data-speaker-notes="“I would test the prototype against source records and existing reporting, then ask scheduling and OR leads to challenge it with cases they remember: an add-on, a cancellation, or a changed schedule. We would resolve disagreements or document limitations before a broader release. User testing is where I learn whether the report helps answer the question from slide 2.”" style="background:#E9EFF4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:96px 128px 88px; box-sizing:border-box; display:flex; flex-direction:column;">
-  <div class="conditional">
-    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
-      <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
-      <span style="font-size:24px; font-weight:600; color:#9A4F22;">If cancellations rise: would the scheduling team recognise these cases?</span>
-    </div>
-  </div>
-  <div style="display:flex; flex-direction:column; gap:24px; max-width:1300px;">
-    <h2 style="margin:0; font-size:64px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Test it with the people who know the cases</h2>
-    <p style="margin:0; font-size:34px; line-height:1.4; color:#3D4852;">A correct calculation also has to reflect what happened in the OR.</p>
-  </div>
-  <div style="flex:1; min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 2px minmax(0,1fr); gap:96px; align-items:center;">
-    <div style="display:flex; flex-direction:column; gap:28px;">
-      <span style="font-size:24px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#2F5D8A;">With the data</span>
-      <span style="font-size:64px; font-weight:600; line-height:1.1; letter-spacing:-0.02em; text-wrap:balance;">“Do the totals reconcile?”</span>
-      <span style="font-size:30px; line-height:1.45; color:#3D4852; text-wrap:pretty;">Against source records and existing reporting.</span>
-    </div>
-    <div style="align-self:stretch; background:#B9C9D8; margin:40px 0;"></div>
-    <div style="display:flex; flex-direction:column; gap:28px;">
-      <span style="font-size:24px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#2F5D8A;">With the people</span>
-      <span style="font-size:64px; font-weight:600; line-height:1.1; letter-spacing:-0.02em; text-wrap:balance;">“Does the interpretation hold for known cases?”</span>
-      <span style="font-size:30px; line-height:1.45; color:#3D4852; text-wrap:pretty;">Scheduling and OR leads challenge it with cases they remember: an add-on, a cancellation, a changed schedule.</span>
-    </div>
-  </div>
-  <div style="display:flex; align-items:center; gap:20px; padding-top:32px; border-top:1px solid #B9C9D8;">
-    <div style="width:14px; height:14px; border-radius:50%; background:#2F5D8A; flex-shrink:0;"></div>
-    <span style="font-size:30px; line-height:1.4;">Resolve disagreements or document limitations before a broader release.</span>
-  </div>
-</section>
-
-<section data-label="07 Dashboard" data-speaker-notes="“Suppose the trend rises. The dashboard lets the Director see where the change appears and what reasons were recorded. It does not declare the cause. I would take the affected cases back to the OR team before recommending a change. That is the moment the dashboard becomes useful: it makes the next conversation more specific.” — All figures are synthetic; services are labelled A–D deliberately." style="background:#102233; color:#F3F5F6; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:72px 112px 72px; box-sizing:border-box; display:flex; flex-direction:column;">
-  <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:48px;">
-    <h2 style="margin:0; font-size:56px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">The dashboard: from a signal to the next question</h2>
-    <span style="flex-shrink:0; padding:8px 18px; background:#F6E4D8; color:#7A3A12; border-radius:6px; font-size:24px; font-weight:700;">Synthetic example — not HSN performance</span>
-  </div>
-  <div style="flex:1; min-height:0; margin-top:32px; background:#FFFFFF; color:#17222D; border-radius:14px; padding:32px 40px; display:flex; flex-direction:column; gap:24px;">
-    <div style="display:flex; justify-content:space-between; align-items:baseline; gap:32px; padding-bottom:20px; border-bottom:1px solid #E3E6E8;">
-      <span style="font-size:30px; font-weight:700;">Surgical Program · Same-day cancellations</span>
-      <span style="font-size:24px; color:#5F6A74;">Also in view: Completed cases · First-case starts · Utilization</span>
-    </div>
-    <div style="flex:1; min-height:0; display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:56px;">
-      <div style="display:flex; flex-direction:column; gap:18px;">
-        <div style="display:flex; align-items:center; gap:14px;">
-          <div class="conditional">
-            <span style="width:40px; height:40px; border-radius:50%; background:#102233; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; flex-shrink:0;">1</span>
-          </div>
-          <span style="font-size:30px; font-weight:600;">The weekly trend changes</span>
-        </div>
-        <div style="flex:1; min-height:0; position:relative;">
-          <div style="position:absolute; left:56px; right:0; bottom:40px; border-top:1.5px solid #9AA7B3;"></div>
-          <div style="position:absolute; left:56px; right:0; bottom:calc(40px + 50%); border-top:1px dashed #DCDFE1;"></div>
-          <div style="position:absolute; left:56px; right:0; bottom:calc(40px + 45%); height:11%; background:rgba(47,93,138,0.12);"></div>
-          <span style="position:absolute; left:0; bottom:26px; font-size:24px; color:#5F6A74;">0%</span>
-          <span style="position:absolute; left:0; bottom:calc(26px + 50%); font-size:24px; color:#5F6A74;">5%</span>
-          <div style="position:absolute; left:72px; right:8px; top:0; bottom:40px; display:flex; align-items:flex-end; gap:14px;">
-            <div style="flex:1; height:49%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:53%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:46%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:51%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:55%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:48%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:52%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:50%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:54%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:51%; background:#B9C9D8; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:69%; background:#B8612E; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:74%; background:#B8612E; border-radius:3px 3px 0 0;"></div>
-            <div style="flex:1; height:78%; background:#B8612E; border-radius:3px 3px 0 0;"></div>
-          </div>
-          <span style="position:absolute; right:8px; top:0; font-size:26px; font-weight:600; color:#9A4F22;">Above the usual range for 3 weeks</span>
-          <div style="position:absolute; left:56px; top:14px; display:flex; align-items:center; gap:10px;">
-            <div style="width:26px; height:14px; background:rgba(47,93,138,0.18);"></div>
-            <span style="font-size:24px; color:#5F6A74;">Usual range</span>
-          </div>
-          <div style="position:absolute; left:72px; right:8px; bottom:0; display:flex; justify-content:space-between; font-size:24px; color:#5F6A74;">
-            <span>Week 1</span>
-            <span>Week 13</span>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:40px;">
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="display:flex; align-items:center; gap:14px;">
-            <div class="conditional">
-              <span style="width:40px; height:40px; border-radius:50%; background:#102233; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; flex-shrink:0;">2</span>
-            </div>
-            <span style="font-size:30px; font-weight:600;">Where it appears</span>
-          </div>
-          <div style="display:grid; grid-template-columns:140px 1fr; gap:14px 18px; align-items:center;">
-            <span style="font-size:26px; color:#3D4852;">Service A</span>
-            <div style="height:20px; width:42%; background:#B9C9D8; border-radius:0 4px 4px 0;"></div>
-            <span style="font-size:26px; font-weight:700; color:#9A4F22;">Service B</span>
-            <div style="height:20px; width:92%; background:#B8612E; border-radius:0 4px 4px 0;"></div>
-            <span style="font-size:26px; color:#3D4852;">Service C</span>
-            <div style="height:20px; width:38%; background:#B9C9D8; border-radius:0 4px 4px 0;"></div>
-            <span style="font-size:26px; color:#3D4852;">Service D</span>
-            <div style="height:20px; width:30%; background:#B9C9D8; border-radius:0 4px 4px 0;"></div>
-          </div>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="display:flex; align-items:center; gap:14px;">
-            <div class="conditional">
-              <span style="width:40px; height:40px; border-radius:50%; background:#102233; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; flex-shrink:0;">3</span>
-            </div>
-            <span style="font-size:30px; font-weight:600;">What was recorded · Service B</span>
-          </div>
-          <div style="display:flex; height:30px; border-radius:6px; overflow:hidden; gap:3px;">
-            <div style="width:38%; background:#102233;"></div>
-            <div style="width:26%; background:#2F5D8A;"></div>
-            <div style="width:22%; background:#7C9BB8;"></div>
-            <div style="width:14%; background:#C3D0DC;"></div>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 24px;">
-            <div style="display:flex; align-items:center; gap:10px;"><div style="width:14px; height:14px; border-radius:3px; background:#102233; flex-shrink:0;"></div><span style="font-size:24px;">Patient condition</span></div>
-            <div style="display:flex; align-items:center; gap:10px;"><div style="width:14px; height:14px; border-radius:3px; background:#2F5D8A; flex-shrink:0;"></div><span style="font-size:24px;">Bed availability</span></div>
-            <div style="display:flex; align-items:center; gap:10px;"><div style="width:14px; height:14px; border-radius:3px; background:#7C9BB8; flex-shrink:0;"></div><span style="font-size:24px;">Case time overrun</span></div>
-            <div style="display:flex; align-items:center; gap:10px;"><div style="width:14px; height:14px; border-radius:3px; background:#C3D0DC; flex-shrink:0;"></div><span style="font-size:24px;">Other documented</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="display:flex; align-items:center; gap:28px; background:#F6E9E0; border-radius:10px; padding:24px 32px;">
-      <div class="conditional">
-        <span style="width:40px; height:40px; border-radius:50%; background:#B8612E; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; flex-shrink:0;">4</span>
-      </div>
-      <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-        <span style="font-size:24px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#9A4F22;">Next question</span>
-        <span style="font-size:40px; font-weight:600; line-height:1.2; color:#17222D;">Which sessions should we review with the OR team?</span>
-      </div>
-      <span style="max-width:380px; font-size:24px; line-height:1.35; color:#5A4232; text-align:right;">The dashboard shows where to look. It does not declare the cause.</span>
-    </div>
-  </div>
-</section>
-
-<section data-label="08 After launch" data-speaker-notes="“After release, I would monitor refreshes and discrepancies and bring questions from the program’s meetings into the next iteration. I want to ship something the team actually opens and trusts. If it cannot help them examine a case or make a planning decision, I would change it.”" style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:96px 128px 88px; box-sizing:border-box; display:flex; flex-direction:column;">
-  <div style="display:flex; flex-direction:column; gap:24px; max-width:1300px;">
-    <h2 style="margin:0; font-size:64px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Keep it useful after launch</h2>
-    <p style="margin:0; font-size:34px; line-height:1.4; color:#3D4852;">Ownership, refresh checks, and a review routine keep the dashboard credible.</p>
-  </div>
-  <div style="margin-top:72px; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:64px;">
-    <div style="display:flex; flex-direction:column; gap:14px; padding-top:24px; border-top:2px solid #17222D;">
-      <span style="font-size:40px; font-weight:600; line-height:1.15;">Named owners</span>
-      <span style="font-size:28px; line-height:1.4; color:#5F6A74;">For every measure and every open issue</span>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:14px; padding-top:24px; border-top:2px solid #17222D;">
-      <span style="font-size:40px; font-weight:600; line-height:1.15;">Refresh and access rules</span>
-      <span style="font-size:28px; line-height:1.4; color:#5F6A74;">Refreshes and discrepancies monitored</span>
-    </div>
-    <div style="display:flex; flex-direction:column; gap:14px; padding-top:24px; border-top:2px solid #17222D;">
-      <span style="font-size:40px; font-weight:600; line-height:1.15;">Regular review</span>
-      <span style="font-size:28px; line-height:1.4; color:#5F6A74;">With the Surgical Program, feeding the next iteration</span>
-    </div>
-  </div>
-  <div style="flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; gap:24px;">
-    <span style="max-width:1500px; font-size:76px; font-weight:600; line-height:1.08; letter-spacing:-0.025em; color:#102233; text-wrap:balance;">Will the team open it in a real meeting, and trust what it shows?</span>
-    <span style="max-width:1200px; font-size:32px; line-height:1.4; color:#3D4852;">If it can’t help them examine a case or make a planning decision, I change it.</span>
-  </div>
-  <div style="display:flex; justify-content:space-between; align-items:baseline; gap:48px; padding-top:28px; border-top:1px solid #C9CFD4;">
-    <span style="font-size:28px; color:#2F5D8A; font-weight:500;">Turn messy operational data into trusted decisions, then ship tools people actually use.</span>
-    <div style="display:flex; gap:20px; align-items:baseline; flex-shrink:0;">
+  <div style="margin-top:44px; padding-top:22px; border-top:1px solid #2A4155; display:flex; justify-content:space-between; align-items:baseline; gap:32px;">
+    <div style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap;">
       <span style="font-size:28px; font-weight:600;">Mihir Trivedi</span>
+      <span style="font-size:24px; color:#A7B6C4;">SQL Server · ETL · Power BI (PL-300) · Data quality</span>
+    </div>
+    <span style="font-size:24px; color:#A7B6C4;">mihirtrivedi.tech</span>
+  </div>
+</section>
+
+<section data-label="02 Who decides" data-screen-label="02" data-speaker-notes="“A dashboard request usually arrives as a list of charts. I start one step earlier: who will make a decision with this, and how often. The Director looks weekly at which services need attention. The OR manager needs something daily. The booking team needs to know which cancellations were visible the day before. Those are different views of the same data. I don't know HSN's OR workflow yet, so the first thing I'd do is sit with the scheduling team and follow five real cases from booking to completion. That tells me where a cancellation gets recorded, by whom, and what the fields actually mean. At the City of Greater Sudbury, with the PreHos scheduling data, I worked through the data context with program staff and subject-matter experts before building the reports.” (about 60 seconds)" style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:48px 96px 44px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div class="conditional">
+    <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:10px; margin-bottom:32px;">
+      <div style="border-top:3px solid #2F5D8A; padding-top:8px; font-size:24px; font-weight:600; color:#2F5D8A;">Question</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Source</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">SQL / ETL / Model</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Power BI / SSRS</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Validate</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Analyze</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Decide</div>
+    </div>
+  </div>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
+    <span style="font-size:26px; font-weight:600; color:#9A4F22;">If cancellations rise: who needs to act, and when?</span>
+  </div>
+  <h2 style="margin:14px 0 0; font-size:60px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Who decides what, and when</h2>
+  <div style="flex:1; min-height:0; margin-top:40px; display:flex; flex-direction:column;">
+    <div style="display:grid; grid-template-columns:500px 260px minmax(0,1fr); gap:40px; padding-bottom:12px; font-size:24px; color:#6B757E;">
+      <span>Who <span style="font-style:italic;">(roles to confirm with HSN)</span></span>
+      <span>How often</span>
+      <span>The decision</span>
+    </div>
+    <div style="display:grid; grid-template-columns:500px 260px minmax(0,1fr); gap:40px; padding:24px 0; border-top:1px solid #D5DADE; align-items:baseline;">
+      <span style="font-size:30px; font-weight:600; color:#4A5561;">Surgical Program Director</span>
+      <span style="font-size:28px; color:#5F6A74;">Weekly / monthly</span>
+      <span style="font-size:34px; font-weight:500; line-height:1.25;">Which services need a closer look?</span>
+    </div>
+    <div style="display:grid; grid-template-columns:500px 260px minmax(0,1fr); gap:40px; padding:24px 0; border-top:1px solid #D5DADE; align-items:baseline;">
+      <span style="font-size:30px; font-weight:600; color:#4A5561;">OR / perioperative manager</span>
+      <span style="font-size:28px; color:#5F6A74;">Daily / weekly</span>
+      <span style="font-size:34px; font-weight:500; line-height:1.25;">Which lists are at risk, and why did first cases start late?</span>
+    </div>
+    <div style="display:grid; grid-template-columns:500px 260px minmax(0,1fr); gap:40px; padding:24px 0; border-top:1px solid #D5DADE; border-bottom:1px solid #D5DADE; align-items:baseline;">
+      <span style="font-size:30px; font-weight:600; color:#4A5561;">Booking and scheduling lead</span>
+      <span style="font-size:28px; color:#5F6A74;">Daily</span>
+      <span style="font-size:34px; font-weight:500; line-height:1.25;">Which cancellations could have been caught the day before?</span>
+    </div>
+    <div style="margin-top:36px; display:flex; align-items:center; gap:20px;">
+      <div style="width:6px; align-self:stretch; background:#2F5D8A; border-radius:3px;"></div>
+      <span style="font-size:32px; font-weight:500; line-height:1.35; color:#2F5D8A;">Before I pick a metric, I walk 5 real cases through this timeline with the scheduling team.</span>
+    </div>
+    <div style="margin-top:auto; position:relative; height:96px;">
+      <div style="position:absolute; left:0; right:0; top:40px; height:2px; background:#C9CFD4;"></div>
+      <div style="position:absolute; left:25%; width:50%; top:39px; height:4px; background:#B8612E;"></div>
+      <span style="position:absolute; left:50%; top:0; transform:translateX(-50%); font-size:24px; font-weight:600; color:#9A4F22; white-space:nowrap;">Where do cancellations enter?</span>
+      <div style="position:absolute; left:0; top:32px; display:flex; flex-direction:column; align-items:flex-start; gap:14px;"><div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div><span style="font-size:26px; color:#3D4852;">Booking</span></div>
+      <div style="position:absolute; left:25%; top:32px; transform:translateX(-9px); display:flex; flex-direction:column; align-items:flex-start; gap:14px;"><div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div><span style="font-size:26px; color:#3D4852;">Scheduling</span></div>
+      <div style="position:absolute; left:50%; top:32px; transform:translateX(-9px); display:flex; flex-direction:column; align-items:flex-start; gap:14px;"><div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div><span style="font-size:26px; color:#3D4852;">Day of surgery</span></div>
+      <div style="position:absolute; left:75%; top:32px; transform:translateX(-9px); display:flex; flex-direction:column; align-items:flex-start; gap:14px;"><div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div><span style="font-size:26px; color:#3D4852;">In the OR</span></div>
+      <div style="position:absolute; right:0; top:32px; display:flex; flex-direction:column; align-items:flex-end; gap:14px;"><div style="width:18px; height:18px; border-radius:50%; background:#17222D;"></div><span style="font-size:26px; color:#3D4852;">Completion</span></div>
+    </div>
+  </div>
+  <div class="conditional">
+    <div style="margin-top:28px; padding-top:16px; border-top:1px solid #D5DADE; display:flex; gap:14px; align-items:baseline;">
+      <span style="font-size:24px; font-weight:600; color:#2F5D8A; white-space:nowrap;">Where I've done this:</span>
+      <span style="font-size:24px; line-height:1.35; color:#3D4852;">City of Greater Sudbury, gathering requirements with program staff so utilization reports matched how the service actually ran.</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="03 Definition" data-screen-label="03" data-speaker-notes="“Four measures cover the decisions on the last slide. I'll go deep on one, because this is where most dashboard arguments start. Two people can both say ‘cancellation rate’ and mean different things. This is my draft. What I bring to the Surgical Program is not the answer, it's the edge cases. A case rebooked for the afternoon: is that a cancellation? A patient who didn't arrive? A case bumped by an emergency? Each one changes the number. I'd bring these to the program lead, get a decision on each, and write it into the data dictionary so the rule is the same in every report. Where HSN already reports a provincial definition for a measure, I'd use that one.” (about 60 seconds)" style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:48px 96px 44px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div class="conditional">
+    <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:10px; margin-bottom:32px;">
+      <div style="border-top:3px solid #2F5D8A; padding-top:8px; font-size:24px; font-weight:600; color:#2F5D8A;">Question</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Source</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">SQL / ETL / Model</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Power BI / SSRS</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Validate</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Analyze</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Decide</div>
+    </div>
+  </div>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
+    <span style="font-size:26px; font-weight:600; color:#9A4F22;">If cancellations rise: what exactly counts as a same-day cancellation?</span>
+  </div>
+  <h2 style="margin:14px 0 0; font-size:60px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Defining a same-day cancellation</h2>
+  <div style="flex:1; min-height:0; margin-top:32px; display:grid; grid-template-columns:minmax(0,1fr) 500px; gap:80px; align-items:start;">
+    <div style="background:#FFFFFF; border:1px solid #DDE1E4; border-top:6px solid #B8612E; border-radius:10px; padding:24px 36px 20px; display:flex; flex-direction:column;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding-bottom:14px;">
+        <span style="font-size:32px; font-weight:700; color:#9A4F22;">Same-day cancellation</span>
+        <span style="font-size:24px; font-style:italic; color:#5F6A74;">Draft, to confirm with the Surgical Program</span>
+      </div>
+      <div style="display:grid; grid-template-columns:200px minmax(0,1fr); gap:28px; padding:14px 0; border-top:1px solid #E6E9EB; align-items:baseline;">
+        <span style="font-size:24px; font-weight:600; color:#5F6A74;">Counts</span>
+        <span style="font-size:28px; line-height:1.35;">Scheduled elective cases cancelled on the day of surgery</span>
+      </div>
+      <div style="display:grid; grid-template-columns:200px minmax(0,1fr); gap:28px; padding:14px 0; border-top:1px solid #E6E9EB; align-items:baseline;">
+        <span style="font-size:24px; font-weight:600; color:#5F6A74;">Out of</span>
+        <span style="font-size:28px; line-height:1.35;">All scheduled elective cases for that day</span>
+      </div>
+      <div style="display:grid; grid-template-columns:200px minmax(0,1fr); gap:28px; padding:14px 0; border-top:1px solid #E6E9EB; align-items:baseline;">
+        <span style="font-size:24px; font-weight:600; color:#5F6A74;">Excluded</span>
+        <span style="font-size:28px; line-height:1.35;">Urgent and emergency add-ons; cases moved to another room and completed the same day</span>
+      </div>
+      <div style="display:grid; grid-template-columns:200px minmax(0,1fr); gap:28px; padding:16px 20px; margin:0 -20px; background:#FBF3EE; border-radius:8px; align-items:start;">
+        <span style="font-size:24px; font-weight:600; color:#9A4F22; line-height:1.3; padding-top:6px;">Edge cases to agree</span>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <span style="padding:6px 16px; border:1.5px solid #B8612E; border-radius:999px; font-size:24px; color:#9A4F22; background:#FFFFFF;">Rebooked later the same day</span>
+          <span style="padding:6px 16px; border:1.5px solid #B8612E; border-radius:999px; font-size:24px; color:#9A4F22; background:#FFFFFF;">Patient did not arrive</span>
+          <span style="padding:6px 16px; border:1.5px solid #B8612E; border-radius:999px; font-size:24px; color:#9A4F22; background:#FFFFFF;">Bumped by an emergency</span>
+          <span style="padding:6px 16px; border:1.5px solid #B8612E; border-radius:999px; font-size:24px; color:#9A4F22; background:#FFFFFF;">Cancelled after entering the OR</span>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:200px minmax(0,1fr); gap:28px; padding:14px 0 4px; align-items:baseline;">
+        <span style="font-size:24px; font-weight:600; color:#5F6A74;">Owner</span>
+        <span style="font-size:28px; line-height:1.35;"><span style="color:#5F6A74;">Surgical Program owns the definition.</span> <span style="color:#2F5D8A; font-weight:600;">I build it, test it and document it.</span></span>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:26px; padding-top:8px;">
+      <span style="font-size:24px; color:#6B757E;">The other three measures</span>
+      <div style="display:flex; flex-direction:column; gap:6px; padding-top:16px; border-top:2px solid #C9CFD4;">
+        <span style="font-size:30px; font-weight:600;">Completed cases</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; padding-top:16px; border-top:2px solid #C9CFD4;">
+        <span style="font-size:30px; font-weight:600;">First-case on-time start</span>
+        <span style="font-size:24px; line-height:1.35; color:#5F6A74;">In room by scheduled start, tolerance to agree</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; padding-top:16px; border-top:2px solid #C9CFD4;">
+        <span style="font-size:30px; font-weight:600;">Utilization of staffed OR time</span>
+        <span style="font-size:24px; line-height:1.35; color:#5F6A74;">In-room minutes over staffed minutes, turnover rule to agree</span>
+      </div>
+      <span style="margin-top:12px; font-size:26px; line-height:1.4; color:#2F5D8A; text-wrap:pretty;">Where HSN already reports a provincial definition, I use it rather than invent a new one.</span>
+    </div>
+  </div>
+  <div class="conditional">
+    <div style="margin-top:28px; padding-top:16px; border-top:1px solid #D5DADE; display:flex; gap:14px; align-items:baseline;">
+      <span style="font-size:24px; font-weight:600; color:#2F5D8A; white-space:nowrap;">Where I've done this:</span>
+      <span style="font-size:24px; line-height:1.35; color:#3D4852;">Flosonics Medical, where I maintained the data dictionaries and field mappings behind leadership reporting.</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="04 Trust the timeline" data-screen-label="04" data-speaker-notes="“A cancellation rate needs four records to agree about one case: the schedule, the case times, the cancellation, and the room time available. I don't know yet which HSN systems hold each of these. I'd confirm that with the Decision Support team and the source owners. Once I have the extracts in SQL Server staging, I run checks like these before anyone sees a chart. Cancellations that don't join to a case. The same case cancelled twice. Out-of-room before in-room. And the simplest one: do my weekly totals match the report the OR team already trusts? Each check is a saved query that runs on every refresh and feeds an exceptions list. I don't quietly fix source data; I take the list to whoever owns the source. At Flosonics I built the same kind of integrity checks so problems were caught before leadership saw the numbers.” (about 75 seconds) Counts are synthetic, 13 weeks." style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:48px 96px 44px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div class="conditional">
+    <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:10px; margin-bottom:32px;">
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Question</div>
+      <div style="border-top:3px solid #2F5D8A; padding-top:8px; font-size:24px; font-weight:600; color:#2F5D8A;">Source</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">SQL / ETL / Model</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Power BI / SSRS</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Validate</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Analyze</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Decide</div>
+    </div>
+  </div>
+  <div style="display:flex; justify-content:space-between; align-items:center; gap:32px;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
+      <span style="font-size:26px; font-weight:600; color:#9A4F22;">If cancellations rise: is a cancelled case recorded the same way everywhere?</span>
+    </div>
+    <span style="flex-shrink:0; padding:6px 16px; background:#F6E4D8; color:#7A3A12; border-radius:6px; font-size:24px; font-weight:700;">Synthetic example, not HSN performance</span>
+  </div>
+  <h2 style="margin:14px 0 0; font-size:60px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Can we trust the case timeline?</h2>
+  <p style="margin:8px 0 0; font-size:30px; line-height:1.35; color:#3D4852;">Before any chart, I run these checks in SQL Server.</p>
+  <div style="flex:1; min-height:0; margin-top:22px; display:grid; grid-template-columns:600px minmax(0,1fr); gap:80px;">
+    <div style="display:flex; flex-direction:column; gap:22px;">
+      <div style="display:flex; flex-direction:column;">
+        <span style="font-size:24px; color:#6B757E; margin-bottom:4px;">One case, four records · sources to confirm</span>
+        <div style="display:grid; grid-template-columns:180px 1fr; align-items:center; height:62px; border-bottom:1px solid #E3E6E8;">
+          <span style="font-size:26px; font-weight:600; color:#4A5561;">Schedule</span>
+          <div style="position:relative; height:100%;">
+            <div style="position:absolute; left:0; right:0; top:44px; height:2px; background:#C9CFD4;"></div>
+            <div style="position:absolute; left:12%; top:37px; width:16px; height:16px; margin-left:-8px; border-radius:50%; background:#17222D;"></div>
+            <span style="position:absolute; left:12%; top:4px; transform:translateX(-50%); font-size:24px; color:#5F6A74; white-space:nowrap;">Booked</span>
+            <div style="position:absolute; left:50%; top:37px; width:16px; height:16px; margin-left:-8px; border-radius:50%; background:#17222D;"></div>
+            <span style="position:absolute; left:50%; top:4px; transform:translateX(-50%); font-size:24px; color:#5F6A74; white-space:nowrap;">Scheduled start</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:180px 1fr; align-items:center; height:62px; border-bottom:1px solid #E3E6E8;">
+          <span style="font-size:26px; font-weight:600; color:#4A5561;">Case times</span>
+          <div style="position:relative; height:100%;">
+            <div style="position:absolute; left:0; right:0; top:44px; height:2px; background:#C9CFD4;"></div>
+            <div style="position:absolute; left:64%; top:37px; width:16px; height:16px; margin-left:-8px; border-radius:50%; background:#17222D;"></div>
+            <span style="position:absolute; left:64%; top:4px; transform:translateX(-50%); font-size:24px; color:#5F6A74; white-space:nowrap;">In room</span>
+            <div style="position:absolute; left:92%; top:37px; width:16px; height:16px; margin-left:-8px; border-radius:50%; background:#17222D;"></div>
+            <span style="position:absolute; left:92%; top:4px; transform:translateX(-50%); font-size:24px; color:#5F6A74; white-space:nowrap;">Out</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:180px 1fr; align-items:center; height:62px; border-bottom:1px solid #E3E6E8;">
+          <span style="font-size:26px; font-weight:600; color:#4A5561;">Cancellation</span>
+          <div style="position:relative; height:100%;">
+            <div style="position:absolute; left:0; right:0; top:44px; height:2px; background:#C9CFD4;"></div>
+            <div style="position:absolute; left:40%; top:35px; width:20px; height:20px; margin-left:-10px; border-radius:50%; background:#F7F7F4; border:3px solid #B8612E; box-sizing:border-box;"></div>
+            <span style="position:absolute; left:40%; top:4px; transform:translateX(-50%); font-size:24px; font-weight:600; color:#9A4F22; white-space:nowrap;">Cancelled? Reason?</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:180px 1fr; align-items:center; height:62px;">
+          <span style="font-size:26px; font-weight:600; color:#4A5561;">Room time</span>
+          <div style="position:relative; height:100%;">
+            <div style="position:absolute; left:4%; right:2%; top:38px; height:14px; border-radius:7px; background:#D6E1EC;"></div>
+            <span style="position:absolute; left:4%; top:4px; font-size:24px; color:#5F6A74; white-space:nowrap;">Staffed, available</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:#102233; border-radius:10px; padding:16px 24px; font-family:'Source Code Pro', ui-monospace, monospace; font-size:22px; line-height:1.3; color:#E3EAF0; display:flex; flex-direction:column; align-self:start;"><div style="white-space:pre;"><span style="color:#8FA3B5;">-- Unmatched cancellations</span></div><div style="white-space:pre;"><span style="color:#8FB8E0;">SELECT</span> c.case_id, c.cancel_dt,</div><div style="white-space:pre;">       c.reason_code</div><div style="white-space:pre;"><span style="color:#8FB8E0;">FROM</span> stg.or_cancellation <span style="color:#8FB8E0;">AS</span> c</div><div style="white-space:pre;"><span style="color:#8FB8E0;">LEFT JOIN</span> stg.or_case <span style="color:#8FB8E0;">AS</span> s</div><div style="white-space:pre;">  <span style="color:#8FB8E0;">ON</span> s.case_id = c.case_id</div><div style="white-space:pre;"><span style="color:#8FB8E0;">WHERE</span> s.case_id <span style="color:#8FB8E0;">IS NULL</span>;</div></div>
+    </div>
+    <div style="display:flex; flex-direction:column;">
+      <div style="display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:24px; padding-bottom:8px; font-size:24px;">
+        <span style="font-weight:600; color:#2F5D8A;">Check I write · what it catches</span>
+        <span style="color:#6B757E; text-align:right;">Flagged, 13 weeks</span>
+      </div>
+      <div style="display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:24px; padding:20px 0; border-top:1px solid #D5DADE; align-items:center;">
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:30px; font-weight:600; line-height:1.2;">Cancellation with no matching scheduled case</span><span style="font-size:24px; color:#5F6A74;">Records that won't join across sources</span></div>
+        <span style="font-size:44px; font-weight:700; text-align:right; font-variant-numeric:tabular-nums;">14</span>
+      </div>
+      <div style="display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:24px; padding:20px 0; border-top:1px solid #D5DADE; align-items:center;">
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:30px; font-weight:600; line-height:1.2;">Same case cancelled more than once</span><span style="font-size:24px; color:#5F6A74;">Duplicates that double-count</span></div>
+        <span style="font-size:44px; font-weight:700; text-align:right; font-variant-numeric:tabular-nums;">9</span>
+      </div>
+      <div style="display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:24px; padding:20px 0; border-top:1px solid #D5DADE; align-items:center;">
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:30px; font-weight:600; line-height:1.2;">Out of room before in room</span><span style="font-size:24px; color:#5F6A74;">Reversed or mistyped times</span></div>
+        <span style="font-size:44px; font-weight:700; text-align:right; font-variant-numeric:tabular-nums;">6</span>
+      </div>
+      <div style="display:grid; grid-template-columns:minmax(0,1fr) 200px; gap:24px; padding:20px 0; border-top:1px solid #D5DADE; border-bottom:1px solid #D5DADE; align-items:center;">
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:30px; font-weight:600; line-height:1.2;">Weekly completed cases vs current OR report</span><span style="font-size:24px; color:#5F6A74;">Totals that don't match what the team trusts</span></div>
+        <span style="font-size:34px; font-weight:700; text-align:right; line-height:1.15;">2 weeks &gt; 2%</span>
+      </div>
+      <div style="margin-top:32px; display:flex; gap:18px;">
+        <div style="width:6px; background:#2F5D8A; border-radius:3px; flex-shrink:0;"></div>
+        <span style="font-size:30px; font-weight:500; line-height:1.35; color:#2F5D8A; text-wrap:pretty;">Flagged cases go to an exceptions list I review with the source owner.</span>
+      </div>
+    </div>
+  </div>
+  <div class="conditional">
+    <div style="margin-top:24px; padding-top:16px; border-top:1px solid #D5DADE; display:flex; gap:14px; align-items:baseline;">
+      <span style="font-size:24px; font-weight:600; color:#2F5D8A; white-space:nowrap;">Where I've done this:</span>
+      <span style="font-size:24px; line-height:1.35; color:#3D4852;">Flosonics Medical, where my SQL integrity checks flagged anomalies before reports reached end users.</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="05 Pipeline" data-screen-label="05" data-speaker-notes="“This is the part of the job I'd own outright. The sources are to confirm; I'd expect a scheduling and case-time source, a cancellation record, and the staffed room time. A scheduled SSIS package or SQL Agent job lands them in SQL Server staging every night, with a log and an alert if a load fails. In SQL, I build two fact tables. The first has one row per scheduled case per scheduled date. That grain matters: if a case is rebooked, I keep both rows and link them, otherwise rebookings either disappear or get counted twice. The second has one row per room per staffed session, which gives utilization a real denominator. Power BI sits on one semantic model, so the Director's page and the huddle list can't disagree. For the huddle, a paginated SSRS list is often more practical than a dashboard. Privacy is designed in, not added later: no patient identifiers in the model, row-level security by service, and case-level detail only for people who need it. Whether to show surgeon-level views is a Surgical Program decision, not mine. I built this kind of pipeline at Flosonics, a warehouse fed by automated ETL, and at the City I integrated vendor systems into SQL Server.” (about 90 seconds)" style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:44px 96px 36px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div class="conditional">
+    <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:10px; margin-bottom:28px;">
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Question</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Source</div>
+      <div style="border-top:3px solid #2F5D8A; padding-top:8px; font-size:24px; font-weight:600; color:#2F5D8A;">SQL / ETL / Model</div>
+      <div style="border-top:3px solid #2F5D8A; padding-top:8px; font-size:24px; font-weight:600; color:#2F5D8A;">Power BI / SSRS</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Validate</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Analyze</div>
+      <div style="border-top:3px solid #DDE1E4; padding-top:8px; font-size:24px; color:#6B757E;">Decide</div>
+    </div>
+  </div>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
+    <span style="font-size:26px; font-weight:600; color:#9A4F22;">If cancellations rise: every view counts each cancellation the same way.</span>
+  </div>
+  <h2 style="margin:14px 0 0; font-size:60px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">From source systems to one trusted model</h2>
+  <div style="margin:10px 0 0; display:flex; justify-content:space-between; align-items:baseline; gap:32px;"><p style="margin:0; font-size:30px; font-weight:500; line-height:1.35; color:#2F5D8A;">I own the SQL and the model underneath. The Surgical Program and Decision Support own the definitions.</p></div><span style="align-self:flex-start; margin-top:14px; padding:6px 16px; border:1.5px solid #9AA7B3; border-radius:6px; font-size:24px; font-weight:600; color:#4A5561;">Illustrative architecture · to confirm with HSN Decision Support</span>
+  <div style="flex:1; min-height:0; margin-top:28px; display:flex; flex-direction:column; gap:22px;">
+    <div style="position:relative; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:36px;">
+      <div style="position:absolute; left:18px; right:0; top:17px; height:3px; background:#2F5D8A;"></div>
+      <div style="position:absolute; left:18px; width:calc(20% - 10px); top:17px; height:3px; background:#C9CFD4;"></div>
+      <div style="position:absolute; right:-4px; top:9px; width:0; height:0; border-left:16px solid #2F5D8A; border-top:10px solid transparent; border-bottom:10px solid transparent;"></div>
+      <div style="position:relative; display:flex; flex-direction:column; gap:10px;">
+        <div style="width:36px; height:36px; border-radius:50%; background:#F7F7F4; border:2px solid #9AA7B3; box-sizing:border-box; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:#5F6A74;">1</div>
+        <span style="margin-top:6px; font-size:28px; font-weight:600; color:#4A5561;">Sources <span style="font-weight:400; font-style:italic; font-size:24px;">(to confirm)</span></span>
+        <span style="font-size:24px; line-height:1.28; color:#4A5561;">OR scheduling and case times</span>
+        <span style="font-size:24px; line-height:1.28; color:#4A5561;">Cancellation log</span>
+        <span style="font-size:24px; line-height:1.28; color:#4A5561;">Staffed room time</span>
+      </div>
+      <div style="position:relative; display:flex; flex-direction:column; gap:10px;">
+        <div style="width:36px; height:36px; border-radius:50%; background:#2F5D8A; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:#FFFFFF;">2</div>
+        <span style="margin-top:6px; font-size:28px; font-weight:600; color:#2F5D8A;">Extract and load</span>
+        <span style="font-size:24px; line-height:1.28;">SSIS or SQL Agent job into SQL Server staging</span>
+        <span style="font-size:24px; line-height:1.28;">Load logged, failure alert</span>
+      </div>
+      <div style="position:relative; display:flex; flex-direction:column; gap:10px;">
+        <div style="width:36px; height:36px; border-radius:50%; background:#2F5D8A; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:#FFFFFF;">3</div>
+        <span style="margin-top:6px; font-size:28px; font-weight:600; color:#2F5D8A;">SQL model</span>
+        <span style="font-size:24px; line-height:1.28;">Views and stored procedures</span>
+        <span style="font-size:24px; line-height:1.28;">Data-quality checks run here</span>
+      </div>
+      <div style="position:relative; display:flex; flex-direction:column; gap:10px;">
+        <div style="width:36px; height:36px; border-radius:50%; background:#2F5D8A; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:#FFFFFF;">4</div>
+        <span style="margin-top:6px; font-size:28px; font-weight:600; color:#2F5D8A;">Power BI model</span>
+        <span style="font-size:24px; line-height:1.28;">One semantic model</span>
+        <span style="font-size:24px; line-height:1.28;">Measures written once in DAX</span>
+      </div>
+      <div style="position:relative; display:flex; flex-direction:column; gap:10px;">
+        <div style="width:36px; height:36px; border-radius:50%; background:#2F5D8A; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:#FFFFFF;">5</div>
+        <span style="margin-top:6px; font-size:28px; font-weight:600; color:#2F5D8A;">Outputs</span>
+        <span style="font-size:24px; line-height:1.28;">Power BI dashboard</span>
+        <span style="font-size:24px; line-height:1.28;">SSRS case list for the OR huddle</span>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:36px; align-items:start;">
+      <div style="grid-column:1 / span 3; position:relative; background:#FFFFFF; border:1px solid #DDE1E4; border-radius:10px; padding:18px 26px; display:flex; flex-direction:column;">
+        <div style="position:absolute; left:calc(66.66% + 14px); top:-23px; width:3px; height:22px; background:#2F5D8A;"></div>
+        <span style="font-size:24px; font-weight:600; color:#2F5D8A; padding-bottom:8px;">Grain, built in the SQL model</span>
+        <div style="display:grid; grid-template-columns:240px minmax(0,1fr); gap:20px; padding:10px 0; border-top:1px solid #E6E9EB; align-items:baseline;">
+          <span style="font-size:26px; font-weight:600;">fact_or_case</span>
+          <span style="font-size:24px; line-height:1.3; color:#3D4852;">One row per scheduled case per date; rebookings linked</span>
+        </div>
+        <div style="display:grid; grid-template-columns:240px minmax(0,1fr); gap:20px; padding:10px 0 0; border-top:1px solid #E6E9EB; align-items:baseline;">
+          <span style="font-size:26px; font-weight:600;">fact_room_session</span>
+          <span style="font-size:24px; line-height:1.3; color:#3D4852;">One row per staffed room session</span>
+        </div>
+        </div>
+      <div style="grid-column:4 / span 2; background:#FFFFFF; border:1px solid #DDE1E4; border-radius:10px; padding:18px 26px; display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; gap:12px; padding-bottom:4px;">
+          <div style="position:relative; width:20px; height:24px; flex-shrink:0;">
+            <div style="position:absolute; left:4px; top:0; width:12px; height:12px; border:2.5px solid #2F5D8A; border-bottom:none; border-radius:7px 7px 0 0; box-sizing:border-box;"></div>
+            <div style="position:absolute; left:0; bottom:0; width:20px; height:14px; background:#2F5D8A; border-radius:3px;"></div>
+          </div>
+          <span style="font-size:24px; font-weight:600; color:#2F5D8A;">Privacy by design</span>
+        </div>
+        <span style="font-size:24px; line-height:1.3;">No patient identifiers in the model</span>
+        <span style="font-size:24px; line-height:1.3;">Row-level security by service</span>
+        <span style="font-size:24px; line-height:1.3;">Case detail only for authorized roles</span>
+      </div>
+    </div>
+  </div>
+  <div class="conditional">
+    <div style="margin-top:22px; padding-top:14px; border-top:1px solid #D5DADE; display:flex; gap:14px; align-items:baseline;">
+      <span style="font-size:24px; font-weight:600; color:#2F5D8A; white-space:nowrap;">Where I've done this:</span>
+      <span style="font-size:24px; line-height:1.35; color:#3D4852;">Flosonics warehouse and automated ETL into central SQL Server · City of Greater Sudbury, SQL Server and SSIS integration, Power Automate replacing manual pulls.</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="06 Validate" data-screen-label="06" data-speaker-notes="“A correct query isn't enough. The number has to match what happened in the OR. I test it two ways. With the data: my weekly totals should reconcile to the report the OR team already uses, and to what HSN already submits externally. Any gap above an agreed tolerance gets a written explanation. With the people: I ask the scheduling lead to pick ten cases they remember, and we look at each one together. If they say ‘that one wasn't a cancellation, it moved to Room 4’, that's the most useful thing that can happen before release. Then the program lead signs off, and anything we couldn't fix is written on an ‘About this data’ page so nobody is surprised later.” (about 60 seconds)" style="background:#EDF1F5; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:48px 96px 44px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div class="conditional">
+    <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:10px; margin-bottom:32px;">
+      <div style="border-top:3px solid #D3DAE1; padding-top:8px; font-size:24px; color:#646E78;">Question</div>
+      <div style="border-top:3px solid #D3DAE1; padding-top:8px; font-size:24px; color:#646E78;">Source</div>
+      <div style="border-top:3px solid #D3DAE1; padding-top:8px; font-size:24px; color:#646E78;">SQL / ETL / Model</div>
+      <div style="border-top:3px solid #D3DAE1; padding-top:8px; font-size:24px; color:#646E78;">Power BI / SSRS</div>
+      <div style="border-top:3px solid #2F5D8A; padding-top:8px; font-size:24px; font-weight:600; color:#2F5D8A;">Validate</div>
+      <div style="border-top:3px solid #D3DAE1; padding-top:8px; font-size:24px; color:#646E78;">Analyze</div>
+      <div style="border-top:3px solid #D3DAE1; padding-top:8px; font-size:24px; color:#646E78;">Decide</div>
+    </div>
+  </div>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <div style="width:12px; height:12px; border-radius:50%; background:#B8612E; flex-shrink:0;"></div>
+    <span style="font-size:26px; font-weight:600; color:#9A4F22;">If cancellations rise: would the scheduling team recognise these cases?</span>
+  </div>
+  <h2 style="margin:14px 0 0; font-size:60px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Reconcile, test with known cases, then release</h2>
+  <div style="flex:1; min-height:0; margin-top:48px; display:grid; grid-template-columns:minmax(0,1fr) 72px minmax(0,1.1fr) 72px minmax(0,1fr); align-items:start;">
+    <div style="display:flex; flex-direction:column; gap:22px;">
+      <span style="font-size:40px; font-weight:600; letter-spacing:-0.01em;">With the data</span>
+      <div style="display:flex; gap:14px; align-items:baseline;"><div style="width:12px; height:12px; border-radius:50%; background:#2F5D8A; flex-shrink:0; transform:translateY(-3px);"></div><span style="font-size:27px; line-height:1.38;">Weekly totals match the reports HSN already trusts <span style="color:#5F6A74; font-style:italic;">(to confirm which)</span></span></div>
+      <div style="display:flex; gap:14px; align-items:baseline;"><div style="width:12px; height:12px; border-radius:50%; background:#2F5D8A; flex-shrink:0; transform:translateY(-3px);"></div><span style="font-size:27px; line-height:1.38;">Any gap is explained in writing</span></div>
+    </div>
+    <div style="display:flex; align-items:center; padding:24px 14px 0;"><div style="flex:1; height:2px; background:#9AA7B3;"></div><div style="width:0; height:0; border-left:12px solid #9AA7B3; border-top:8px solid transparent; border-bottom:8px solid transparent;"></div></div>
+    <div style="display:flex; flex-direction:column; gap:22px;">
+      <span style="font-size:40px; font-weight:600; letter-spacing:-0.01em;">With the people</span>
+      <div style="display:flex; gap:14px; align-items:baseline;"><div style="width:12px; height:12px; border-radius:50%; background:#8A949D; flex-shrink:0; transform:translateY(-3px);"></div><span style="font-size:27px; line-height:1.38;">The scheduling lead picks 10 cases they remember. We check each one together.</span></div>
+      <div style="display:flex; flex-direction:column; gap:10px; padding:4px 0 4px 26px;">
+        <div style="display:flex; gap:8px;">
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#FFFFFF; border:2.5px solid #B8612E; box-sizing:border-box; display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:700; color:#9A4F22;">!</div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+          <div style="width:40px; height:40px; border-radius:6px; background:#D6E1EC; display:flex; align-items:center; justify-content:center;"><div style="width:9px; height:17px; border-right:3px solid #2F5D8A; border-bottom:3px solid #2F5D8A; transform:translateY(-2px) rotate(45deg);"></div></div>
+        </div>
+        <span style="font-size:24px; color:#4A5561;">10 known cases · 9 match · <span style="color:#9A4F22; font-weight:600;">1 flagged</span></span>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;"><div style="width:12px; height:12px; border-radius:50%; background:#2F5D8A; flex-shrink:0; transform:translateY(-3px);"></div><span style="font-size:27px; line-height:1.38;">Each mismatch is fixed or recorded as a known limit</span></div>
+    </div>
+    <div style="display:flex; align-items:center; padding:24px 14px 0;"><div style="flex:1; height:2px; background:#9AA7B3;"></div><div style="width:0; height:0; border-left:12px solid #9AA7B3; border-top:8px solid transparent; border-bottom:8px solid transparent;"></div></div>
+    <div style="display:flex; flex-direction:column; gap:22px;">
+      <span style="font-size:40px; font-weight:600; letter-spacing:-0.01em;">Release</span>
+      <div style="display:flex; gap:18px; align-items:center;">
+        <div style="width:52px; height:52px; border-radius:50%; background:#A4521F; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><div style="width:11px; height:22px; border-right:4px solid #FFFFFF; border-bottom:4px solid #FFFFFF; transform:translateY(-3px) rotate(45deg);"></div></div>
+        <span style="font-size:27px; line-height:1.35; font-weight:600;">The Surgical Program lead signs off</span>
+      </div>
+      <div style="display:flex; gap:14px; align-items:baseline;"><div style="width:12px; height:12px; border-radius:50%; background:#2F5D8A; flex-shrink:0; transform:translateY(-3px);"></div><span style="font-size:27px; line-height:1.38;">Known limits shown on an “About this data” page</span></div>
+    </div>
+  </div>
+  <span style="font-size:48px; font-weight:600; letter-spacing:-0.015em; color:#2F5D8A;">I don't release a number I can't explain.</span>
+  <div class="conditional">
+    <div style="margin-top:28px; padding-top:16px; border-top:1px solid #C9D2DA; display:flex; gap:14px; align-items:baseline;">
+      <span style="font-size:24px; font-weight:600; color:#2F5D8A; white-space:nowrap;">Where I've done this:</span>
+      <span style="font-size:24px; line-height:1.35; color:#3D4852;">Flosonics, validating dashboard outputs with stakeholders · Minax, running UAT before delivery</span>
+    </div>
+  </div>
+</section>
+
+<section data-label="07 Signal to decision" data-screen-label="07" data-speaker-notes="“Here's the moment the dashboard was built for. Service B's same-day cancellations have been above their expected range for three weeks. The dashboard's job ends here. It shows where to look. Everything between this and a decision is my job. First, I confirm it's real. At about 40 cases a week, two extra cancellations move the rate by five points, so I check the volume, the refresh, and whether a new reason code or a recording change appeared. Here the volume is stable and the data is clean, so the rise is real. Second, I find what changed. Looking at the current mix of reasons isn't enough; I compare it to Service B's own baseline. In this example, almost the entire increase is bed availability, concentrated on Tuesday lists where patients need an inpatient bed after surgery. That points outside the OR, towards patient flow. Third, I brief the Director before the meeting, on one page: what we see, what the data can't tell us, three cases worth reviewing, and a question for Patient Flow. I give options, not a diagnosis. The decision is the Surgical Program's. Here that might be reviewing Tuesday lists with the OR and Patient Flow teams. Fourth, whatever they change, I mark the date on the dashboard and report back in four weeks. That's how we find out if the decision worked. [MIHIR TO PROVIDE: close with 1 or 2 sentences on a real time you did this, for example ‘At ___, I noticed ___ in the data, checked ___, and the team decided ___.’]” (about 2 minutes) QUESTIONS TO BE READY FOR. How is the control band calculated? Answer with your rule, for example the mean of the prior 12 weeks with limits at 3 standard deviations, or a p-chart for a proportion. Say you'd use whatever SPC method HSN's quality team already uses. What if the rise were in ‘patient condition’? Mostly not preventable. The useful question then is whether pre-op assessment timing changed. Still a brief, just a different question for a different team. Why not name the cause? Because the data shows where and when, not why. The OR and Patient Flow teams know why. My job is to put the right cases in front of them." style="background:#102233; color:#F3F5F6; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:40px 96px 48px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <div class="conditional">
+    <div style="display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:10px; margin-bottom:20px;">
+      <div style="border-top:3px solid #2A4155; padding-top:8px; font-size:24px; color:#8A9BAB;">Question</div>
+      <div style="border-top:3px solid #2A4155; padding-top:8px; font-size:24px; color:#8A9BAB;">Source</div>
+      <div style="border-top:3px solid #2A4155; padding-top:8px; font-size:24px; color:#8A9BAB;">SQL / ETL / Model</div>
+      <div style="border-top:3px solid #2A4155; padding-top:8px; font-size:24px; color:#8A9BAB;">Power BI / SSRS</div>
+      <div style="border-top:3px solid #2A4155; padding-top:8px; font-size:24px; color:#8A9BAB;">Validate</div>
+      <div style="border-top:3px solid #8FB8E0; padding-top:8px; font-size:24px; font-weight:600; color:#BFD6EE;">Analyze</div>
+      <div style="border-top:3px solid #E7A27A; padding-top:8px; font-size:24px; font-weight:600; color:#F0BE9E;">Decide</div>
+    </div>
+  </div>
+  <div style="display:flex; justify-content:space-between; align-items:center; gap:32px;">
+    <h2 style="margin:0; font-size:54px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">From signal to decision: what I do in between</h2>
+    <span style="flex-shrink:0; padding:6px 16px; background:#F6E4D8; color:#7A3A12; border-radius:6px; font-size:24px; font-weight:700;">Synthetic example, not HSN performance</span>
+  </div>
+  <div style="flex:1; min-height:0; margin-top:20px; display:grid; grid-template-columns:240px minmax(0,1fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr); grid-template-rows:auto minmax(0,1fr) 48px auto; column-gap:22px;">
+    <div style="grid-column:1; grid-row:1; display:flex; flex-direction:column; justify-content:center; padding-bottom:14px; border-bottom:1px solid #2A4155;">
+      <span style="font-size:26px; font-weight:600; color:#A7B6C4; line-height:1.2;">The dashboard shows</span>
+    </div>
+    <div style="grid-column:2 / span 4; grid-row:1; display:grid; grid-template-columns:560px 400px minmax(0,1fr); gap:44px; align-items:center; padding-bottom:14px; border-bottom:1px solid #2A4155;">
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <span style="font-size:24px; color:#A7B6C4;">Service B, weekly same-day cancellation rate</span>
+        <div style="position:relative; height:80px;">
+          <div style="position:absolute; left:0; right:0; bottom:0; height:1.5px; background:#5A7288;"></div>
+          <div style="position:absolute; left:0; right:0; bottom:30px; height:22px; background:rgba(143,184,224,0.18); border-top:1px dashed #8FB8E0;"></div>
+          <div style="position:absolute; left:4px; right:4px; top:0; bottom:0; display:flex; align-items:flex-end; gap:8px;">
+            <div style="flex:1; height:40%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:44%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:38%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:43%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:46%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:39%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:42%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:41%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:45%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:42%; background:#4B6A86; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:72%; background:#E08A55; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:84%; background:#E08A55; border-radius:2px 2px 0 0;"></div>
+            <div style="flex:1; height:92%; background:#E08A55; border-radius:2px 2px 0 0;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:120px 1fr; gap:6px 14px; align-items:center;">
+        <span style="font-size:24px; color:#A7B6C4;">Service A</span><div style="height:14px; width:40%; background:#4B6A86; border-radius:0 3px 3px 0;"></div>
+        <span style="font-size:24px; font-weight:700; color:#F0BE9E;">Service B</span><div style="height:14px; width:92%; background:#E08A55; border-radius:0 3px 3px 0;"></div>
+        <span style="font-size:24px; color:#A7B6C4;">Service C</span><div style="height:14px; width:36%; background:#4B6A86; border-radius:0 3px 3px 0;"></div>
+        <span style="font-size:24px; color:#A7B6C4;">Service D</span><div style="height:14px; width:28%; background:#4B6A86; border-radius:0 3px 3px 0;"></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <span style="font-size:28px; font-weight:600; line-height:1.25; color:#F3F5F6;">Service B above expected range for 3 weeks.</span>
+        <span style="font-size:24px; line-height:1.3; color:#A7B6C4;">The dashboard shows where to look. It does not declare the cause.</span>
+      </div>
+    </div>
+    <div style="grid-column:1 / -1; grid-row:2; margin:14px -24px -12px; background:rgba(47,93,138,0.22); border-radius:16px;"></div>
+    <div style="position:relative; grid-column:1; grid-row:2; display:flex; flex-direction:column; justify-content:center; gap:10px; padding-top:28px;">
+      <span style="font-size:72px; font-weight:700; line-height:1; color:#8FB8E0; letter-spacing:-0.02em;">I do</span>
+      <span style="font-size:24px; line-height:1.3; color:#A7B6C4;">Between the signal and the meeting</span>
+    </div>
+    <div style="grid-column:2; grid-row:2; position:relative; margin-top:28px; background:#2F5D8A; border-radius:10px; padding:24px 24px; display:flex; flex-direction:column; gap:12px; box-shadow:0 0 0 1px rgba(143,184,224,0.35);">
+      <span style="font-size:24px; font-weight:700; color:#BFD6EE;">1</span>
+      <span style="font-size:36px; font-weight:600; line-height:1.12;">Confirm it's real</span>
+      <span style="font-size:26px; line-height:1.35; color:#E6EEF6;">Volume stable, refresh clean, no new reason codes. Not a data artifact.</span>
+    </div>
+    <div style="grid-column:3; grid-row:2; position:relative; margin-top:28px; background:#2F5D8A; border-radius:10px; padding:24px 24px; display:flex; flex-direction:column; gap:12px; box-shadow:0 0 0 1px rgba(143,184,224,0.35);">
+      <span style="font-size:24px; font-weight:700; color:#BFD6EE;">2</span>
+      <span style="font-size:36px; font-weight:600; line-height:1.12;">Find what changed</span>
+      <div style="display:grid; grid-template-columns:150px 1fr; gap:4px 12px; align-items:center; padding:2px 0;">
+        <span style="font-size:24px; color:#E6EEF6;">12-wk baseline</span>
+        <div style="display:flex; align-items:center; gap:10px;"><div style="height:14px; width:34%; background:rgba(255,255,255,0.45); border-radius:0 3px 3px 0;"></div><span style="font-size:24px; font-weight:600; white-space:nowrap; flex-shrink:0;">~2 / wk</span></div>
+        <span style="font-size:24px; color:#E6EEF6;">Last 3 weeks</span>
+        <div style="display:flex; align-items:center; gap:10px;"><div style="height:14px; width:68%; background:#FFFFFF; border-radius:0 3px 3px 0;"></div><span style="font-size:24px; font-weight:600; white-space:nowrap; flex-shrink:0;">~4 / wk</span></div>
+      </div>
+      <span style="font-size:26px; line-height:1.35; color:#E6EEF6;">Almost all of the increase is “bed availability”, mostly on Tuesday lists.</span>
+    </div>
+    <div style="grid-column:4; grid-row:2; position:relative; margin-top:28px; background:#2F5D8A; border-radius:10px; padding:24px 24px; display:flex; flex-direction:column; gap:12px; box-shadow:0 0 0 1px rgba(143,184,224,0.35);">
+      <span style="font-size:24px; font-weight:700; color:#BFD6EE;">3</span>
+      <span style="font-size:36px; font-weight:600; line-height:1.12;">Brief the decision-maker</span>
+      <span style="font-size:26px; line-height:1.35; color:#E6EEF6;">One page before the meeting: what we see, what we can't tell, 3 cases to review. Options, not conclusions.</span>
+    </div>
+    <div style="grid-column:5; grid-row:2; position:relative; margin-top:28px; background:#2F5D8A; border-radius:10px; padding:24px 24px; display:flex; flex-direction:column; gap:12px; box-shadow:0 0 0 1px rgba(143,184,224,0.35);">
+      <span style="font-size:24px; font-weight:700; color:#BFD6EE;">4</span>
+      <span style="font-size:36px; font-weight:600; line-height:1.12;">Track the result</span>
+      <span style="font-size:26px; line-height:1.35; color:#E6EEF6;">Mark the change date. Report back in 4 weeks.</span>
+    </div>
+    <div style="grid-column:4; grid-row:3; display:flex; flex-direction:column; align-items:center;">
+      <div style="width:3px; flex:1; background:#8FB8E0;"></div>
+      <div style="width:0; height:0; border-top:12px solid #8FB8E0; border-left:9px solid transparent; border-right:9px solid transparent;"></div>
+    </div>
+    <div style="grid-column:5; grid-row:3; display:flex; flex-direction:column; align-items:center;">
+      <div style="width:0; height:0; border-bottom:12px solid #E7A27A; border-left:9px solid transparent; border-right:9px solid transparent;"></div>
+      <div style="width:3px; flex:1; background:#E7A27A;"></div>
+    </div>
+    <div style="grid-column:1; grid-row:4; display:flex; align-items:center;">
+      <span style="font-size:26px; font-weight:600; line-height:1.2; color:#F0BE9E;">The Surgical Program decides</span>
+    </div>
+    <div style="grid-column:2 / span 2; grid-row:4; display:flex; align-items:center; border-top:1px dashed #2A4155;"></div>
+    <div style="grid-column:4 / span 2; grid-row:4; background:#A4521F; border-radius:10px; padding:14px 24px; display:flex; flex-direction:column; gap:6px;">
+      <span style="font-size:24px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#FBE3D3;">Decision</span>
+      <span style="font-size:30px; font-weight:600; line-height:1.2; color:#FFFFFF;">Review Service B Tuesday lists with the OR and Patient Flow teams.</span>
+    </div>
+  </div>
+
+</section>
+
+<section data-label="08 My role" data-screen-label="08" data-speaker-notes="“To bring it together: the OR dashboard is one piece of this. What I'd bring to Decision Support is ownership of the whole path, from the first conversation about the question, through the SQL, the model and the reports, the validation, and the analysis that turns a signal into a brief the Director can use. The Surgical Program owns the definitions and the decisions. I make sure both rest on numbers everyone trusts. Once it's live I keep it healthy: a scheduled refresh with a failure alert, a regular data quality review, a log of every definition change, and a post-launch review with the Director. The test I use is simple: will the team open it in a real meeting and trust what it shows? If not, I change it.” (about 45 seconds)" style="background:#F7F7F4; color:#17222D; font-family:'Source Sans 3', 'Segoe UI', system-ui, sans-serif; padding:64px 96px 48px; box-sizing:border-box; display:flex; flex-direction:column;">
+  <h2 style="margin:0; font-size:64px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">My role from question to decision</h2>
+  <div style="margin-top:52px; display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); column-gap:22px; row-gap:0;">
+    <div style="border-top:5px solid #2F5D8A; padding-top:12px; font-size:28px; font-weight:600;">Question</div>
+    <div style="border-top:5px solid #2F5D8A; padding-top:12px; font-size:28px; font-weight:600;">Source</div>
+    <div style="border-top:5px solid #2F5D8A; padding-top:12px; font-size:28px; font-weight:600;">SQL / ETL / Model</div>
+    <div style="border-top:5px solid #2F5D8A; padding-top:12px; font-size:28px; font-weight:600;">Power BI / SSRS</div>
+    <div style="border-top:5px solid #2F5D8A; padding-top:12px; font-size:28px; font-weight:600;">Validate</div>
+    <div style="border-top:5px solid #2F5D8A; padding-top:12px; font-size:28px; font-weight:600;">Analyze</div>
+    <div style="border-top:5px solid #B8612E; padding-top:12px; font-size:28px; font-weight:600; color:#9A4F22;">Decide</div>
+    <span style="grid-column:1 / -1; margin-top:22px; font-size:24px; font-weight:600; color:#2F5D8A;">What I own</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#2F5D8A; font-weight:500;">Turning the request into decisions and measures</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#2F5D8A; font-weight:500;">Mapping, extracts, DQ checks</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#2F5D8A; font-weight:500;">Pipeline, tables, grain, data dictionary</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#2F5D8A; font-weight:500;">Semantic model, measures, reports, security</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#2F5D8A; font-weight:500;">Reconciliation, known-case testing</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#2F5D8A; font-weight:500;">Confirming signals, finding what changed, the brief</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#2F5D8A; font-weight:500;">Tracking whether the decision worked</span>
+    <span style="grid-column:1 / -1; margin-top:24px; padding-top:18px; border-top:1px solid #D5DADE; font-size:24px; font-weight:600; color:#5F6A74;">What partners own</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#5F6A74;">Surgical Program: the decisions</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#5F6A74;">Source system owners: fixes at source</span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#5F6A74;">Decision Support: standards and review</span>
+    <span></span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#5F6A74;">Scheduling and OR leads: the known cases, sign-off</span>
+    <span></span>
+    <span style="margin-top:8px; font-size:25px; line-height:1.32; color:#9A4F22; font-weight:600;">Surgical Program: the decision</span>
+  </div>
+  <div style="margin-top:36px; display:flex; flex-wrap:wrap; gap:10px 28px; align-items:baseline; font-size:26px; color:#3D4852;">
+    <span style="font-weight:600; color:#17222D;">Running it</span>
+    <span>Scheduled refresh + failure alert</span>
+    <span>Regular DQ review</span>
+    <span>Definition change log</span>
+    <span>Post-launch review</span>
+  </div>
+  <div style="flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; gap:14px;">
+    <span style="max-width:1560px; font-size:64px; font-weight:600; line-height:1.1; letter-spacing:-0.02em; color:#102233; text-wrap:balance;">Will the team open it in a real meeting, and trust what it shows?</span>
+    <span style="font-size:32px; color:#2F5D8A; font-weight:500;">That's the test I hold my work to.</span>
+  </div>
+  <div style="padding-top:16px; border-top:1px solid #D5DADE; display:flex; justify-content:space-between; align-items:baseline; gap:40px;">
+    <div class="conditional">
+      <div style="display:flex; gap:14px; align-items:baseline;">
+        <span style="font-size:24px; font-weight:600; color:#2F5D8A; white-space:nowrap;">Where I've done this:</span>
+        <span style="font-size:24px; line-height:1.35; color:#3D4852;">at Flosonics I owned reporting end to end, from warehouse to leadership dashboards, and cut manual reporting overhead by 40%.</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:16px; align-items:baseline; flex-shrink:0; margin-left:auto;">
+      <span style="font-size:26px; font-weight:600;">Mihir Trivedi</span>
       <span style="font-size:24px; color:#5F6A74;">mihirtrivedi.tech</span>
     </div>
   </div>
