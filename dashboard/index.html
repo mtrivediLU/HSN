@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Synthetic interactive operating room dashboard prototype for an HSN interview presentation.">
+  <title>Interactive OR Dashboard · Synthetic Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="prototype-banner">Interactive prototype using synthetic data — not HSN performance.</div>
+  <header class="app-header">
+    <div>
+      <a class="back-link" href="../#dashboard-experience">← Back to presentation</a>
+      <h1>Operating Room Dashboard</h1>
+      <p>Decision support prototype · illustrative operational data</p>
+    </div>
+    <div class="header-actions">
+      <span class="status"><i></i> Refreshed 06:00 · checks passed</span>
+      <button class="text-button" id="aboutButton" type="button">About this data</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="control-panel" aria-label="Dashboard controls">
+      <div class="role-switcher" role="group" aria-label="Primary user view">
+        <button class="role-button is-active" data-role="director" type="button">Program Director</button>
+        <button class="role-button" data-role="manager" type="button">OR Manager</button>
+        <button class="role-button" data-role="scheduling" type="button">Booking / Scheduling</button>
+      </div>
+      <div class="filters">
+        <label>Timeframe<select id="timeframeFilter"><option value="13">Last 13 weeks</option><option value="8">Last 8 weeks</option><option value="4">Last 4 weeks</option></select></label>
+        <label>Service<select id="serviceFilter"><option value="All">All services</option><option>Service A</option><option>Service B</option><option>Service C</option><option>Service D</option><option>Service E</option></select></label>
+        <label>Room<select id="roomFilter"><option value="All">All rooms</option><option>OR 1</option><option>OR 2</option><option>OR 3</option><option>OR 4</option><option>OR 5</option><option>OR 6</option><option>OR 7</option><option>OR 8</option></select></label>
+      </div>
+    </section>
+
+    <section class="demo-panel" aria-labelledby="demoTitle">
+      <div><span class="eyebrow">Guided demo</span><h2 id="demoTitle">Follow the synthetic signal</h2></div>
+      <div class="demo-steps" role="group" aria-label="Guided demo steps">
+        <button class="demo-step is-active" data-demo="1" type="button"><b>1</b> Baseline signal</button>
+        <button class="demo-step" data-demo="2" type="button"><b>2</b> Filter Service B</button>
+        <button class="demo-step" data-demo="3" type="button"><b>3</b> Isolate Tuesday / bed availability</button>
+      </div>
+      <p id="demoNarrative">Start with the 13-week program view. A recent Service B change warrants a closer look.</p>
+    </section>
+
+    <section class="kpi-grid" aria-label="Key performance indicators">
+      <article class="kpi-card"><span>Same-day cancellations</span><strong id="kpiCancellation">—</strong><small id="kpiCancellationContext">Synthetic expected range: 4–6%</small></article>
+      <article class="kpi-card"><span>First-case on-time start</span><strong id="kpiStart">—</strong><small>Synthetic expected range: 72–82%</small></article>
+      <article class="kpi-card"><span>OR utilization</span><strong id="kpiUtilization">—</strong><small>Synthetic expected range: 76–86%</small></article>
+      <article class="kpi-card"><span>Completed cases</span><strong id="kpiCompleted">—</strong><small id="kpiCompletedContext">Illustrative volume</small></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel trend-panel">
+        <div class="panel-heading"><div><span class="eyebrow">Strategic trend</span><h2>Weekly same-day cancellations</h2></div><span class="legend"><i></i> Synthetic expected range 4–6%</span></div>
+        <div class="trend-chart" id="trendChart" aria-label="Weekly cancellation rate chart"></div>
+      </article>
+      <article class="panel service-panel">
+        <div class="panel-heading"><div><span class="eyebrow">Breakdown</span><h2>By service</h2></div><span class="hint">Select a service</span></div>
+        <div class="bar-list" id="serviceBreakdown"></div>
+      </article>
+      <article class="panel reason-panel">
+        <div class="panel-heading"><div><span class="eyebrow">Operational investigation</span><h2>Recorded cancellation reasons</h2></div><span class="hint" id="reasonScope">All services</span></div>
+        <div class="reason-list" id="reasonBreakdown"></div>
+      </article>
+      <article class="panel weekday-panel">
+        <div class="panel-heading"><div><span class="eyebrow">Drill-down</span><h2>Day of week</h2></div><span class="hint">Select a day</span></div>
+        <div class="weekday-grid" id="weekdayBreakdown"></div>
+        <div class="heatmap" id="heatmap" aria-label="Synthetic cancellation concentration by day and room"></div>
+      </article>
+    </section>
+
+    <section class="panel case-panel" id="casePanel">
+      <div class="panel-heading">
+        <div><span class="eyebrow">Case-level follow-up</span><h2>Anonymized operational list</h2></div>
+        <div class="case-actions"><span id="caseCount">0 synthetic cases</span><button class="secondary-button" id="csvButton" type="button">Download CSV</button></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th><button data-sort="id" type="button">Case ID ↕</button></th><th><button data-sort="date" type="button">Date ↕</button></th><th>Service</th><th>Room</th><th>Day</th><th>Recorded reason</th><th>Status</th><th></th></tr></thead>
+          <tbody id="caseRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="decision-panel" aria-labelledby="decisionTitle">
+      <div class="decision-intro"><span class="eyebrow">Decision Support brief</span><h2 id="decisionTitle">From observation to the next management question</h2><p>This panel separates what the synthetic data shows from what requires operational context.</p></div>
+      <div class="decision-flow">
+        <article><b>Observed signal</b><p>Service B’s synthetic same-day cancellation rate rises above its illustrative range for three weeks.</p></article>
+        <article><b>What I checked</b><p>Volume is stable, the refresh passed, and no new recorded reason codes appeared.</p></article>
+        <article><b>Where the variance is</b><p>The illustrative variance is concentrated on Tuesday lists and records coded as bed availability.</p></article>
+        <article><b>What the data cannot confirm</b><p>The record cannot establish root cause, bed-state context, preventability, or the operational circumstances of each case.</p></article>
+        <article class="management-question"><b>Next management question</b><p>Should we review selected Service B Tuesday sessions with OR leadership and Patient Flow?</p></article>
+      </div>
+    </section>
+  </main>
+
+  <aside class="case-drawer" id="caseDrawer" aria-hidden="true" aria-labelledby="drawerTitle">
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="Close case brief">×</button>
+    <span class="eyebrow">Synthetic case brief</span><h2 id="drawerTitle">Case</h2><div id="drawerBody"></div>
+    <p class="limit-note">This anonymized operational record contains no patient identifier and cannot establish clinical or operational root cause.</p>
+    <button class="primary-button" id="printButton" type="button">Print brief</button>
+  </aside>
+
+  <dialog id="aboutDialog">
+    <button class="drawer-close" id="aboutClose" type="button" aria-label="Close about this data">×</button>
+    <span class="eyebrow">About this data</span><h2>Synthetic prototype definitions and limits</h2>
+    <dl><dt>Data notice</dt><dd>Every value and record is synthetic and illustrative. Nothing shown is HSN performance.</dd><dt>Same-day cancellation</dt><dd>A synthetic case on the final OR list recorded as cancelled on the day of surgery.</dd><dt>Expected ranges</dt><dd>Illustrative comparison bands created for this prototype. They are not HSN targets.</dd><dt>Known limits</dt><dd>Recorded reasons require validation with case owners and do not prove causality or preventability. No patient identifiers are used.</dd><dt>Refresh</dt><dd>Illustrative daily refresh at 06:00 after automated checks.</dd></dl>
+  </dialog>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

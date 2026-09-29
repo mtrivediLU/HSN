@@ -1,6 +1,6 @@
 # HSN OR Dashboard Interview Presentation
 
-A responsive, eight-slide interview presentation for HSN Decision Support Analyst II competition #10169. The dashboard figures are illustrative synthetic data and do not represent HSN performance.
+A responsive, seven-slide interview presentation and interactive operating room dashboard prototype for HSN Decision Support Analyst II competition #10169. Every dashboard value and record is synthetic and does not represent HSN performance.
 
 ## Run locally
 
@@ -10,7 +10,7 @@ The site is static and has no build step. From the repository root, run:
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000>. Use the on-screen controls or keyboard arrow keys to move through the deck. `Home` returns to slide 1 and `End` opens slide 9.
+Then open <http://localhost:8000>. Use the on-screen controls or keyboard arrow keys to move through the deck. `Home` returns to slide 1 and `End` opens slide 7. The dashboard prototype is at <http://localhost:8000/dashboard/>.
 
 ## Deploy
 
@@ -18,13 +18,14 @@ Pushing to `main` runs [the GitHub Pages workflow](.github/workflows/deploy-page
 
 <https://mtrivedilu.github.io/HSN/>
 
-The workflow packages only the public site files. Relative URLs are used throughout so navigation, styles, scripts, and the PowerPoint download work under the `/HSN/` project path.
+The workflow packages only the public site files. Presentation assets use project-safe paths, and the dashboard call to action uses the deployed `/HSN/dashboard/` route.
 
 ## Public files
 
-- `index.html` — final Claude Design V3 slide content and inline visual composition
+- `index.html` — final Claude Design V6 slide content and inline visual composition
 - `styles.css` — presentation shell and responsive reflow rules
 - `app.js` — minimal slide navigation and keyboard controls
+- `dashboard/` — responsive dashboard prototype, interaction code, and synthetic JSON fixture
 - `downloads/Mihir_Trivedi_HSN_OR_Dashboard.pptx` — downloadable PowerPoint
 
 Private source material such as résumés, job descriptions, handoff notes, and export archives is intentionally excluded from this repository.

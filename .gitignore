@@ -8,6 +8,10 @@
 *.zip
 claude-export*/
 uploads/
+*.dc.html
+deck-stage.js
+support.js
+*Dashboard UX Brief*
 
 # Local tooling and OS files.
 node_modules/

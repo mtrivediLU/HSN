@@ -5,7 +5,7 @@
   const nextButton = document.querySelector('#nextButton');
   const slideNumber = document.querySelector('#slideNumber');
   const homeButton = document.querySelector('#homeButton');
-  const anchorIds = ['opening', 'who-decides', 'definition', 'trust-the-timeline', 'pipeline', 'validate', 'signal-to-decision', 'my-role'];
+  const anchorIds = ['question', 'stakeholders', 'trusted-data', 'pipeline', 'validation', 'analysis-to-conversation', 'dashboard-experience'];
   let currentIndex = 0;
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
@@ -45,6 +45,7 @@
     slides.forEach((slide, slideIndex) => {
       const active = slideIndex === currentIndex;
       slide.classList.toggle('is-active', active);
+      slide.toggleAttribute('data-deck-active', active);
       slide.hidden = !active;
       slide.setAttribute('aria-hidden', String(!active));
     });

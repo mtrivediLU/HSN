@@ -30,6 +30,7 @@ jobs:
           mkdir _site
           cp index.html styles.css app.js _site/
           cp -R downloads _site/downloads
+          cp -R dashboard _site/dashboard
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
