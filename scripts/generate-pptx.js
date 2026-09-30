@@ -50,6 +50,7 @@ async function main() {
     const slideCount = await page.locator('.slide').count();
     const images = [];
     let ctaBox;
+    let ctaImagePath;
     for (let index = 0; index < slideCount; index += 1) {
       await page.evaluate((slideIndex) => { location.hash = document.querySelectorAll('.slide')[slideIndex].id; }, index);
       await page.waitForTimeout(1200);
@@ -57,7 +58,10 @@ async function main() {
       await page.locator('.slide.is-active').screenshot({ path:imagePath });
       images.push(imagePath);
       if (index === slideCount - 1) {
-        ctaBox = await page.getByRole('link', { name:/Explore Interactive OR Dashboard/i }).boundingBox();
+        const cta = page.getByRole('link', { name:/Explore Interactive OR Dashboard/i });
+        ctaBox = await cta.boundingBox();
+        ctaImagePath = path.join(tempDir, 'dashboard-cta.png');
+        await cta.screenshot({ path:ctaImagePath });
       }
     }
 
@@ -75,13 +79,14 @@ async function main() {
       if (index === images.length - 1 && ctaBox) {
         const scaleX = 13.333333 / 1920;
         const scaleY = 7.5 / 1080;
-        slide.addShape(pptx.ShapeType.rect, {
+        // Re-add the exact CTA pixels as a linked image. A visible image hyperlink
+        // is reliably clickable in PowerPoint, unlike a fully transparent overlay.
+        slide.addImage({
+          path:ctaImagePath,
           x:ctaBox.x * scaleX,
           y:ctaBox.y * scaleY,
           w:ctaBox.width * scaleX,
           h:ctaBox.height * scaleY,
-          fill:{ color:'FFFFFF', transparency:100 },
-          line:{ color:'FFFFFF', transparency:100 },
           hyperlink:{ url:dashboardUrl, tooltip:'Explore Interactive OR Dashboard' },
           altText:'Explore Interactive OR Dashboard'
         });
