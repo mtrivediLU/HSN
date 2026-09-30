@@ -1,0 +1,23 @@
+{
+  "notice": "Synthetic demo data — not HSN performance",
+  "weeks": ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8", "W9", "W10", "W11", "W12", "W13"],
+  "program": [4.9, 5.3, 4.6, 5.1, 5.5, 4.8, 5.2, 5.0, 5.4, 5.1, 6.9, 7.4, 7.8],
+  "orthopaedics": [6.0, 6.4, 5.8, 6.2, 6.6, 5.9, 6.3, 6.1, 6.5, 6.4, 10.4, 11.2, 12.0],
+  "specialties": [
+    {"name": "Orthopaedics", "rate": 10.0},
+    {"name": "General Surgery", "rate": 6.1},
+    {"name": "Urology", "rate": 5.4},
+    {"name": "ENT", "rate": 3.2}
+  ],
+  "cases": [
+    {"id":"SYN-30455","date":"Thu 24 Sep","day":"Thu","room":"OR 2 · AM","reason":"Bed availability"},
+    {"id":"SYN-30418","date":"Tue 22 Sep","day":"Tue","room":"OR 2 · PM","reason":"Bed availability"},
+    {"id":"SYN-30422","date":"Tue 22 Sep","day":"Tue","room":"OR 4 · PM","reason":"Bed availability"},
+    {"id":"SYN-30390","date":"Mon 21 Sep","day":"Mon","room":"OR 4 · AM","reason":"Patient not ready"},
+    {"id":"SYN-30301","date":"Wed 16 Sep","day":"Wed","room":"OR 4 · PM","reason":"Case time overrun"},
+    {"id":"SYN-30266","date":"Tue 15 Sep","day":"Tue","room":"OR 2 · PM","reason":"Bed availability","flag":"Late entry (+2 d)"},
+    {"id":"SYN-30271","date":"Tue 15 Sep","day":"Tue","room":"OR 2 · AM","reason":"Patient not ready"},
+    {"id":"SYN-30109","date":"Tue 8 Sep","day":"Tue","room":"OR 4 · PM","reason":"Bed availability"},
+    {"id":"SYN-30114","date":"Tue 8 Sep","day":"Tue","room":"OR 2 · PM","reason":"Bed availability"}
+  ]
+}

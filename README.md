@@ -18,7 +18,19 @@ Pushing to `main` runs [the GitHub Pages workflow](.github/workflows/deploy-page
 
 <https://mtrivedilu.github.io/HSN/>
 
-The workflow packages only the public site files. Presentation assets use project-safe paths, and the dashboard call to action uses the deployed `/HSN/dashboard/` route.
+The workflow packages only the public site files. Presentation assets use project-safe paths, and the presentation call to action opens the deployed dashboard in a new tab.
+
+## Regenerate the PowerPoint
+
+The export script captures the seven web slides and adds a real external hyperlink over the dashboard call to action on the final slide:
+
+```bash
+npm install
+npx playwright install chromium
+npm run generate:pptx
+```
+
+The generated file replaces `downloads/Mihir_Trivedi_HSN_OR_Dashboard.pptx`. The dashboard URL is defined in `scripts/generate-pptx.js`, so future exports retain the hyperlink.
 
 ## Public files
 
@@ -27,5 +39,6 @@ The workflow packages only the public site files. Presentation assets use projec
 - `app.js` — minimal slide navigation and keyboard controls
 - `dashboard/` — responsive dashboard prototype, interaction code, and synthetic JSON fixture
 - `downloads/Mihir_Trivedi_HSN_OR_Dashboard.pptx` — downloadable PowerPoint
+- `scripts/generate-pptx.js` — repeatable presentation export with the dashboard hyperlink
 
 Private source material such as résumés, job descriptions, handoff notes, and export archives is intentionally excluded from this repository.

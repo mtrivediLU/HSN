@@ -1,140 +1,217 @@
 (() => {
-  const state = { data: null, role: 'director', service: 'All', room: 'All', day: 'All', timeframe: 13, sort: 'date', reviewed: new Set() };
-  const $ = (selector) => document.querySelector(selector);
-  const $$ = (selector) => Array.from(document.querySelectorAll(selector));
-  const pct = (value) => `${Number(value).toFixed(1)}%`;
+  const state = { view: 'baseline', tab: 'patterns', openTooltip: null, aboutOpen: false };
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+  let data;
+  let returnFocusTo = null;
 
-  async function load() {
-    const response = await fetch('data.json');
-    if (!response.ok) throw new Error('Synthetic data fixture could not be loaded.');
-    state.data = await response.json();
-    bind();
-    render();
-  }
+  const kpis = [
+    { id:'cancel', label:'Same-Day Cancellation Rate', value:'6.8%', status:'▲ Above expected range', tone:'amber', context:'Baseline 5.1% · expected 4.5–5.6%', definition:'Booked cases cancelled on the scheduled day of surgery, as a share of cases booked for that day.', formula:'same-day cancellations ÷ cases booked × 100' },
+    { id:'fcots', label:'First-Case On-Time Starts', value:'71%', status:'— Stable', tone:'slate', context:'Baseline 71%', definition:'First case of each session starting within the agreed grace period of its scheduled start.', formula:'on-time first cases ÷ first cases × 100' },
+    { id:'util', label:'Staffed OR Utilization', value:'82%', status:'✓ In range', tone:'green', context:'Expected 78–88% (illustrative)', definition:'Time patients are in the room as a share of staffed session time.', formula:'in-room case minutes ÷ staffed session minutes × 100' },
+    { id:'cases', label:'Completed Cases', value:'395', status:'— Stable', tone:'slate', context:'Baseline 400 · within ±3%', definition:'Cases with a recorded procedure end time in the period.', formula:'count of completed cases' }
+  ];
 
-  function bind() {
-    $$('.role-button').forEach((button) => button.addEventListener('click', () => setRole(button.dataset.role)));
-    $('#timeframeFilter').addEventListener('change', (event) => { state.timeframe = Number(event.target.value); render(); });
-    $('#serviceFilter').addEventListener('change', (event) => { state.service = event.target.value; render(); });
-    $('#roomFilter').addEventListener('change', (event) => { state.room = event.target.value; render(); });
-    $$('.demo-step').forEach((button) => button.addEventListener('click', () => runDemo(Number(button.dataset.demo))));
-    $$('[data-sort]').forEach((button) => button.addEventListener('click', () => { state.sort = button.dataset.sort; renderCases(); }));
-    $('#csvButton').addEventListener('click', downloadCsv);
-    $('#caseRows').addEventListener('click', handleCaseClick);
-    $('#drawerClose').addEventListener('click', closeDrawer);
-    $('#printButton').addEventListener('click', () => print());
-    $('#aboutButton').addEventListener('click', () => $('#aboutDialog').showModal());
-    $('#aboutClose').addEventListener('click', () => $('#aboutDialog').close());
-    addEventListener('keydown', (event) => { if (event.key === 'Escape') closeDrawer(); });
-  }
-
-  function setRole(role) {
-    state.role = role;
-    $$('.role-button').forEach((button) => button.classList.toggle('is-active', button.dataset.role === role));
-    if (role === 'director') $('.trend-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    if (role === 'manager') $('.reason-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    if (role === 'scheduling') $('#casePanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function runDemo(step) {
-    $$('.demo-step').forEach((button) => button.classList.toggle('is-active', Number(button.dataset.demo) === step));
-    const narrative = $('#demoNarrative');
-    state.day = 'All';
-    if (step === 1) {
-      state.service = 'All'; state.room = 'All'; state.timeframe = 13; setRole('director');
-      narrative.textContent = 'Start with the 13-week program view. A recent Service B change warrants a closer look.';
-    } else if (step === 2) {
-      state.service = 'Service B'; state.room = 'All'; state.timeframe = 13; setRole('manager');
-      narrative.textContent = 'Service B is above the illustrative expected range. Check where the recorded variance concentrates.';
-    } else {
-      state.service = 'Service B'; state.room = 'All'; state.day = 'Tuesday'; state.timeframe = 13; setRole('scheduling');
-      narrative.textContent = 'Tuesday and “bed availability” account for much of the synthetic pattern. Review selected records with their operational owners.';
+  const briefs = {
+    baseline: {
+      signal:'Same-day cancellations have been above the expected range for 3 weeks: 6.8% vs a 5.1% baseline.',
+      pattern:'Orthopaedics stands out at 10.0%, well above the other specialties.',
+      limit:'Rates show where cancellations occur, not why they occur.',
+      next:'Is the increase concentrated in Orthopaedics, and if so, where?'
+    },
+    orthopaedics: {
+      signal:'Same-day cancellations have been above the expected range for 3 weeks: 6.8% vs a 5.1% baseline.',
+      pattern:'Orthopaedics holds 12 of the program’s 29 cancellations; bed availability is the most frequent recorded reason (7 of 12).',
+      limit:'Recorded reasons are entered at cancellation and are not clinically validated.',
+      next:'Is the Orthopaedics concentration tied to particular days or sessions?'
+    },
+    tuesday: {
+      signal:'Same-day cancellations have been above the expected range for 3 weeks: 6.8% vs a 5.1% baseline.',
+      pattern:'Half of Orthopaedics cancellations fall on Tuesdays (6 of 12); 5 of 6 are recorded as bed availability, mostly in PM sessions.',
+      limit:'The data cannot establish why beds were unavailable. Counts are small (n = 6).',
+      next:'Should we review selected Orthopaedics Tuesday sessions with OR leadership and Patient Flow?'
     }
-    $('#serviceFilter').value = state.service; $('#roomFilter').value = state.room; $('#timeframeFilter').value = String(state.timeframe);
+  };
+
+  async function init() {
+    const response = await fetch('data/or-demo.json');
+    if (!response.ok) throw new Error('The synthetic demo data could not be loaded.');
+    data = await response.json();
+    bindStaticEvents();
     render();
   }
 
-  function currentKpis() {
-    if (state.service !== 'All') return state.data.services.find((item) => item.name === state.service);
-    const services = state.data.services;
-    return {
-      rate: services.reduce((sum, item) => sum + item.rate, 0) / services.length,
-      start: services.reduce((sum, item) => sum + item.start, 0) / services.length,
-      utilization: services.reduce((sum, item) => sum + item.utilization, 0) / services.length,
-      completed: services.reduce((sum, item) => sum + item.completed, 0)
-    };
+  function bindStaticEvents() {
+    $$('.demo-switcher [data-view]').forEach((button) => button.addEventListener('click', () => setView(button.dataset.view)));
+    $('#specialtyFilter').addEventListener('click', () => setView(state.view === 'baseline' ? 'orthopaedics' : 'baseline'));
+    $('#resetButton').addEventListener('click', () => setView('baseline'));
+    $('#patternsTab').addEventListener('click', () => setTab('patterns'));
+    $('#casesTab').addEventListener('click', () => setTab('cases'));
+    $('#kpiStrip').addEventListener('click', (event) => {
+      const button = event.target.closest('[data-tooltip]');
+      if (!button) return;
+      returnFocusTo = button;
+      state.openTooltip = state.openTooltip === button.dataset.tooltip ? null : button.dataset.tooltip;
+      closeAbout(false);
+      renderKpis();
+    });
+    $('#aboutButton').addEventListener('click', () => toggleAbout($('#aboutButton')));
+    $('#definitionsButton').addEventListener('click', () => toggleAbout($('#definitionsButton')));
+    $('#aboutClose').addEventListener('click', () => closeAbout(true));
+    $$('.report-button').forEach((button) => button.addEventListener('click', reportIssue));
+    $('#filtersToggle').addEventListener('click', () => {
+      const open = $('#filtersToggle').getAttribute('aria-expanded') !== 'true';
+      $('#filtersToggle').setAttribute('aria-expanded', String(open));
+      $('#filters').classList.toggle('is-open', open);
+    });
+    document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('keydown', handleKeydown);
+  }
+
+  function setView(view) {
+    state.view = view;
+    state.tab = 'patterns';
+    state.openTooltip = null;
+    closeAbout(false);
+    render();
+  }
+
+  function setTab(tab) {
+    state.tab = tab;
+    renderInvestigation();
   }
 
   function render() {
-    const kpis = currentKpis();
-    $('#kpiCancellation').textContent = pct(kpis.rate);
-    $('#kpiStart').textContent = `${Math.round(kpis.start)}%`;
-    $('#kpiUtilization').textContent = `${Math.round(kpis.utilization)}%`;
-    $('#kpiCompleted').textContent = kpis.completed.toLocaleString('en-CA');
-    $('#kpiCancellationContext').textContent = state.service === 'All' ? 'Synthetic expected range: 4–6%' : `${state.service} · synthetic expected range: 4–6%`;
-    $('#kpiCompletedContext').textContent = `${state.timeframe}-week illustrative volume`;
-    renderTrend(); renderServices(); renderReasons(); renderWeekdays(); renderCases();
+    const drilled = state.view !== 'baseline';
+    $$('.demo-switcher [data-view]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === state.view)));
+    $('#specialtyFilterValue').textContent = drilled ? 'Orthopaedics' : 'All';
+    $('#specialtyFilter').classList.toggle('is-selected', drilled);
+    $('#roomFilter').hidden = !drilled;
+    $('#resetButton').hidden = !drilled;
+    renderKpis();
+    renderTrend();
+    renderSpecialties();
+    renderInvestigation();
+    renderBrief();
   }
 
-  function renderTrend() {
-    const weeks = state.data.weeks.slice(-state.timeframe);
-    const multiplier = state.service === 'Service B' ? 1.28 : state.service === 'All' ? 1 : .88 + state.data.services.findIndex((item) => item.name === state.service) * .02;
-    $('#trendChart').innerHTML = weeks.map((week) => {
-      const rate = Math.min(10.5, week.rate * multiplier);
-      return `<div class="trend-bar ${rate > 6 ? 'is-high' : ''}" style="height:${rate * 9}%" title="${week.label}: ${pct(rate)}"><span>${pct(rate)}</span><small>${week.label}</small></div>`;
+  function renderKpis() {
+    const color = { amber:'var(--amber-ink)', slate:'#475569', green:'var(--green)' };
+    $('#kpiStrip').innerHTML = kpis.map((kpi, index) => {
+      const open = state.openTooltip === kpi.id;
+      return `<article class="kpi ${index === 0 ? 'signal' : ''}">
+        <div class="kpi-label"><span>${kpi.label}</span><button class="info-button" type="button" data-tooltip="${kpi.id}" aria-label="What is ${kpi.label}?" aria-expanded="${open}" ${open ? `aria-describedby="tooltip-${kpi.id}"` : ''}>i</button></div>
+        <div class="kpi-value-row"><strong class="kpi-value">${kpi.value}</strong><span class="kpi-status" style="color:${color[kpi.tone]}">${kpi.status}</span></div>
+        <span class="kpi-context">${kpi.context}</span>
+        ${open ? `<div class="tooltip" id="tooltip-${kpi.id}" role="tooltip"><strong>${kpi.label}</strong><span>${kpi.definition}</span><code>${kpi.formula}</code><small>Refreshed daily 06:00 · last 29 Sep, 06:10</small></div>` : ''}
+      </article>`;
     }).join('');
   }
 
-  function renderServices() {
-    $('#serviceBreakdown').innerHTML = state.data.services.map((item) => `<button class="bar-button ${state.service === item.name ? 'is-active' : ''}" data-service="${item.name}" type="button"><span class="bar-label"><span>${item.name}</span><b>${pct(item.rate)}</b></span><span class="bar-track"><span class="bar-fill" style="width:${item.rate * 8.5}%"></span></span></button>`).join('');
-    $$('#serviceBreakdown [data-service]').forEach((button) => button.addEventListener('click', () => { state.service = button.dataset.service; $('#serviceFilter').value = state.service; render(); }));
+  function renderTrend() {
+    const drilled = state.view !== 'baseline';
+    const series = drilled ? data.orthopaedics : data.program;
+    const band = drilled ? [5.4, 7.0] : [4.5, 5.6];
+    const scale = (value) => value / 14 * 100;
+    $('#trendTitle').textContent = drilled ? '13-week trend · Orthopaedics same-day cancellations' : '13-week trend · same-day cancellations';
+    $('#programLegend').hidden = !drilled;
+    const bars = series.map((value, index) => {
+      const high = index >= 10 && value > band[1];
+      return `<div class="bar-slot"><div class="trend-bar ${high ? 'is-high' : ''}" style="height:${scale(value)}%" aria-label="${data.weeks[index]}: ${value.toFixed(1)} percent">${high ? `<b>${value.toFixed(1)}</b>` : ''}</div>${drilled ? `<i class="program-tick" style="bottom:${scale(data.program[index])}%" aria-hidden="true"></i>` : ''}</div>`;
+    }).join('');
+    $('#trendChart').innerHTML = `<div class="expected-band" style="bottom:${scale(band[0])}%;height:${scale(band[1]-band[0])}%"></div>${[0,4,8,12].map((tick) => `<span class="axis-label" style="bottom:${scale(tick)}%">${tick}%</span>`).join('')}<div class="bars">${bars}</div>`;
+    $('#weekLabels').innerHTML = data.weeks.map((week, index) => `<span class="${index >= 10 ? 'high' : ''}">${week}</span>`).join('');
+    $('#trendTable').innerHTML = `<table><caption>${$('#trendTitle').textContent}</caption><thead><tr><th>Week</th>${data.weeks.map((week) => `<th>${week}</th>`).join('')}</tr></thead><tbody><tr><th>Rate</th>${series.map((value) => `<td>${value.toFixed(1)}%</td>`).join('')}</tr></tbody></table>`;
   }
 
-  function renderReasons() {
-    const serviceB = state.service === 'Service B';
-    $('#reasonScope').textContent = state.service === 'All' ? 'All services' : state.service;
-    $('#reasonBreakdown').innerHTML = state.data.reasons.map((item) => { const value = serviceB ? item.serviceB : item.all; return `<div class="reason-row"><span class="bar-label"><span>${item.name}</span><b>${value}%</b></span><span class="bar-track"><span class="bar-fill" style="width:${value * 2}%"></span></span></div>`; }).join('');
+  function renderSpecialties() {
+    const drilled = state.view !== 'baseline';
+    $('#specialtyList').innerHTML = data.specialties.map((specialty) => {
+      const anomaly = specialty.name === 'Orthopaedics';
+      const selected = anomaly && drilled;
+      const tag = anomaly ? 'button' : 'div';
+      return `<${tag} class="specialty-button ${anomaly ? 'is-action' : ''}" ${anomaly ? `type="button" data-specialty="orthopaedics" aria-pressed="${selected}" aria-label="${selected ? 'Return to program baseline' : 'Investigate Orthopaedics'}"` : ''}>
+        <span class="specialty-heading"><span>${specialty.name}</span><span class="specialty-value">${anomaly ? '<span class="specialty-flag">▲ Above range</span>' : ''}${specialty.rate.toFixed(1)}%</span></span>
+        <span class="specialty-track"><span class="specialty-fill ${anomaly ? 'anomaly' : ''}" style="width:${specialty.rate / 12 * 100}%"></span><i class="specialty-ref"></i></span>
+      </${tag}>`;
+    }).join('');
+    const action = $('[data-specialty]');
+    action.addEventListener('click', () => setView(drilled ? 'baseline' : 'orthopaedics'));
+    $('#specialtyTable').innerHTML = `<table><caption>Same-day cancellations by specialty</caption><thead><tr><th>Specialty</th><th>Rate</th></tr></thead><tbody>${data.specialties.map((item) => `<tr><th>${item.name}</th><td>${item.rate.toFixed(1)}%</td></tr>`).join('')}</tbody></table>`;
   }
 
-  function renderWeekdays() {
-    $('#weekdayBreakdown').innerHTML = state.data.weekdays.map((item) => `<button class="weekday-button ${state.day === item.name ? 'is-active' : ''}" data-day="${item.name}" type="button"><span>${item.name.slice(0,3)}</span><strong>${pct(item.rate + (state.service === 'Service B' && item.name === 'Tuesday' ? 2.1 : 0))}</strong></button>`).join('');
-    $$('#weekdayBreakdown [data-day]').forEach((button) => button.addEventListener('click', () => { state.day = state.day === button.dataset.day ? 'All' : button.dataset.day; renderWeekdays(); renderCases(); }));
-    const rooms = Array.from({length:8}, (_, index) => `OR ${index + 1}`);
-    const days = ['Mon','Tue','Wed','Thu','Fri'];
-    let cells = '<span></span>' + rooms.map((room) => `<span class="heatmap-label">${room}</span>`).join('');
-    days.forEach((day, dayIndex) => { cells += `<span class="heatmap-label">${day}</span>`; rooms.forEach((room, roomIndex) => { const high = dayIndex === 1 && [1,4,7].includes(roomIndex); const medium = (dayIndex + roomIndex) % 4 === 0; cells += `<span class="heatmap-cell ${high ? 'high' : medium ? 'medium' : ''}">${high ? '●●●' : medium ? '●●' : '●'}</span>`; }); });
-    $('#heatmap').innerHTML = cells;
+  function renderInvestigation() {
+    const drilled = state.view !== 'baseline';
+    $('#investigation').hidden = !drilled;
+    if (!drilled) return;
+    const tuesday = state.view === 'tuesday';
+    $('#investigationTitle').textContent = tuesday ? 'Orthopaedics · Tuesday pattern' : 'Orthopaedics · where the variance sits';
+    $('#investigationSubtitle').textContent = tuesday ? '6 cancellations of 26 booked Tuesday cases · last 4 weeks' : '12 cancellations of 120 booked cases · last 4 weeks';
+    $('#caseTabCount').textContent = tuesday ? '6' : '12';
+    $('#patternsTab').setAttribute('aria-selected', String(state.tab === 'patterns'));
+    $('#casesTab').setAttribute('aria-selected', String(state.tab === 'cases'));
+    $('#patternsPanel').hidden = state.tab !== 'patterns';
+    $('#casesPanel').hidden = state.tab !== 'cases';
+    if (state.tab === 'patterns') renderPatterns(tuesday); else renderCases(tuesday);
   }
 
-  function filteredCases() {
-    return state.data.cases.filter((item) => (state.service === 'All' || item.service === state.service) && (state.room === 'All' || item.room === state.room) && (state.day === 'All' || item.day === state.day)).sort((a,b) => String(a[state.sort]).localeCompare(String(b[state.sort])));
+  function renderPatterns(tuesday) {
+    const reasons = tuesday ? [['Bed availability',5],['Patient not ready',1]] : [['Bed availability',7],['Patient not ready',2],['Case time overrun',1],['Other / not recorded',2]];
+    const total = tuesday ? 6 : 12;
+    const days = [['Mon',2],['Tue',6],['Wed',2],['Thu',1],['Fri',1]];
+    const sessions = tuesday ? [['OR 2 · Tue PM','3/7',true],['OR 4 · Tue PM','2/6',true],['OR 2 · Tue AM','1/7',false],['OR 4 · Tue AM','0/6',false]] : [['OR 2','7/62',false],['OR 4','5/58',false]];
+    $('#patternsPanel').innerHTML = `<div class="patterns-grid">
+      <div class="pattern-group"><strong>Recorded reasons</strong>${reasons.map(([label,count],index) => `<div class="reason-row"><div class="reason-copy ${index === 0 ? 'is-primary' : ''}"><span>${label}</span><span class="reason-track"><i class="reason-fill" style="width:${count/total*100}%"></i></span></div><span class="reason-count">${count}/${total}</span></div>`).join('')}</div>
+      <div class="pattern-group"><strong>Day of week <small>· select a day</small></strong><div class="day-bars">${days.map(([label,count]) => { const isTuesday = label === 'Tue'; return `<${isTuesday ? 'button' : 'div'} class="day-button ${isTuesday ? 'is-action' : ''}" ${isTuesday ? `type="button" data-day="tuesday" aria-pressed="${tuesday}" aria-label="${tuesday ? 'Return to Orthopaedics view' : 'Investigate Tuesday pattern'}"` : `aria-label="${label}: ${count} cancellations"`}><b>${count}</b><i class="day-column" style="height:${count/6*70}%"></i></${isTuesday ? 'button' : 'div'}>`; }).join('')}</div><div class="day-labels">${days.map(([label]) => `<span>${label}</span>`).join('')}</div></div>
+      <div class="pattern-group"><strong>${tuesday ? 'Tuesday sessions' : 'By room'}</strong>${sessions.map(([label,value,hot]) => `<div class="session-row ${hot ? 'is-hot' : ''}"><strong>${label}</strong><span>${value}</span></div>`).join('')}<span class="session-note">Cancelled / booked</span></div>
+    </div>`;
+    $('[data-day="tuesday"]').addEventListener('click', () => setView(tuesday ? 'orthopaedics' : 'tuesday'));
   }
 
-  function renderCases() {
-    const cases = filteredCases();
-    $('#caseCount').textContent = `${cases.length} synthetic case${cases.length === 1 ? '' : 's'}`;
-    $('#caseRows').innerHTML = cases.length ? cases.map((item) => { const reviewed = state.reviewed.has(item.id) || item.status === 'Reviewed'; return `<tr><td><button class="row-button" data-open="${item.id}" type="button">${item.id}</button></td><td>${item.date}</td><td>${item.service}</td><td>${item.room}</td><td>${item.day}</td><td>${item.reason}</td><td><span class="status-pill ${reviewed ? 'reviewed' : ''}">${reviewed ? 'Reviewed' : 'Needs review'}</span></td><td><button class="row-button" data-review="${item.id}" type="button">${reviewed ? 'Undo' : 'Mark reviewed'}</button></td></tr>`; }).join('') : '<tr><td colspan="8">No synthetic cases match the selected filters.</td></tr>';
+  function renderCases(tuesday) {
+    const pool = data.cases.filter((item) => !tuesday || item.day === 'Tue');
+    const rows = pool.slice(0,5);
+    $('#casesPanel').innerHTML = `<table class="case-table"><thead><tr><th>Case ref</th><th>Date</th><th>Room / session</th><th>Recorded reason</th><th>QA status</th></tr></thead><tbody>${rows.map((item) => `<tr><td>${item.id}</td><td>${item.date}</td><td>${item.room}</td><td>${item.reason}</td><td class="${item.flag ? 'case-flag' : 'case-passed'}">${item.flag ? `▲ ${item.flag}` : '✓ Passed'}</td></tr>`).join('')}</tbody></table><p class="case-foot">Showing 5 of ${tuesday ? 6 : 12} · most recent first · synthetic case refs, no patient identifiers</p>`;
   }
 
-  function handleCaseClick(event) {
-    const open = event.target.closest('[data-open]'); const review = event.target.closest('[data-review]');
-    if (open) openDrawer(open.dataset.open);
-    if (review) { state.reviewed.has(review.dataset.review) ? state.reviewed.delete(review.dataset.review) : state.reviewed.add(review.dataset.review); renderCases(); }
+  function renderBrief() {
+    const brief = briefs[state.view];
+    $('#briefBody').innerHTML = [['Signal',brief.signal],['Pattern',brief.pattern],['Limit',brief.limit]].map(([label,text]) => `<div class="brief-item"><span class="brief-label">${label}</span><p>${text}</p></div>`).join('');
+    $('#nextQuestion').textContent = brief.next;
   }
 
-  function openDrawer(id) {
-    const item = state.data.cases.find((entry) => entry.id === id);
-    $('#drawerTitle').textContent = item.id;
-    $('#drawerBody').innerHTML = `<dl><dt>Date</dt><dd>${item.date}</dd><dt>Service</dt><dd>${item.service}</dd><dt>Room</dt><dd>${item.room}</dd><dt>Day</dt><dd>${item.day}</dd><dt>Recorded reason</dt><dd>${item.reason}</dd><dt>Follow-up</dt><dd>Validate the recorded reason and operational context with the case owner.</dd></dl>`;
-    $('#caseDrawer').classList.add('is-open'); $('#caseDrawer').setAttribute('aria-hidden','false'); $('#drawerClose').focus();
+  function toggleAbout(trigger) {
+    returnFocusTo = trigger;
+    state.aboutOpen ? closeAbout(true) : openAbout();
   }
-  function closeDrawer() { $('#caseDrawer').classList.remove('is-open'); $('#caseDrawer').setAttribute('aria-hidden','true'); }
-
-  function downloadCsv() {
-    const rows = [['Case ID','Date','Service','Room','Day','Recorded reason','Status'], ...filteredCases().map((item) => [item.id,item.date,item.service,item.room,item.day,item.reason,state.reviewed.has(item.id) ? 'Reviewed' : item.status])];
-    const csv = rows.map((row) => row.map((cell) => `"${String(cell).replaceAll('"','""')}"`).join(',')).join('\n');
-    const link = document.createElement('a'); link.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'})); link.download = 'synthetic-or-cases.csv'; link.click(); URL.revokeObjectURL(link.href);
+  function openAbout() {
+    state.aboutOpen = true;
+    state.openTooltip = null;
+    $('#aboutPopover').hidden = false;
+    $('#aboutButton').setAttribute('aria-expanded','true');
+    renderKpis();
+    $('#aboutClose').focus();
+  }
+  function closeAbout(restoreFocus) {
+    if (!state.aboutOpen) return;
+    state.aboutOpen = false;
+    $('#aboutPopover').hidden = true;
+    $('#aboutButton').setAttribute('aria-expanded','false');
+    if (restoreFocus && returnFocusTo) returnFocusTo.focus();
+  }
+  function reportIssue() {
+    closeAbout(false);
+    $('#reportStatus').textContent = '— reporting connection placeholder';
+  }
+  function handleOutsideClick(event) {
+    if (state.aboutOpen && !event.target.closest('#aboutPopover') && !event.target.closest('#aboutButton') && !event.target.closest('#definitionsButton')) closeAbout(false);
+    if (state.openTooltip && !event.target.closest('.tooltip') && !event.target.closest('[data-tooltip]')) { state.openTooltip = null; renderKpis(); }
+  }
+  function handleKeydown(event) {
+    if (event.key !== 'Escape') return;
+    if (state.aboutOpen) closeAbout(true);
+    if (state.openTooltip) { state.openTooltip = null; renderKpis(); if (returnFocusTo) requestAnimationFrame(() => returnFocusTo.focus()); }
   }
 
-  load().catch((error) => { document.querySelector('main').innerHTML = `<p class="panel">${error.message}</p>`; });
+  init().catch((error) => { $('main').innerHTML = `<section class="panel"><h1>Dashboard unavailable</h1><p>${error.message}</p></section>`; });
 })();

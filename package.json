@@ -1,0 +1,13 @@
+{
+  "name": "hsn-interview-presentation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static HSN interview presentation and synthetic OR dashboard prototype",
+  "scripts": {
+    "generate:pptx": "node scripts/generate-pptx.js"
+  },
+  "devDependencies": {
+    "playwright": "1.55.0",
+    "pptxgenjs": "4.0.1"
+  }
+}
