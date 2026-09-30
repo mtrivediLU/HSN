@@ -90,6 +90,26 @@ async function main() {
           hyperlink:{ url:dashboardUrl, tooltip:'Explore Interactive OR Dashboard' },
           altText:'Explore Interactive OR Dashboard'
         });
+        // PowerPoint only follows picture links in Slide Show, so also overlay an
+        // invisible text box whose shape and text run carry the same external link.
+        // The shared object lets the shape reuse the relationship created for the run.
+        const ctaLink = { url:dashboardUrl, tooltip:'Explore Interactive OR Dashboard' };
+        slide.addText([{
+          text:'Explore Interactive OR Dashboard',
+          options:{ hyperlink:ctaLink, color:'FFFFFF', transparency:100, underline:{ style:'none' } }
+        }], {
+          x:ctaBox.x * scaleX,
+          y:ctaBox.y * scaleY,
+          w:ctaBox.width * scaleX,
+          h:ctaBox.height * scaleY,
+          margin:0,
+          align:'center',
+          valign:'middle',
+          fontSize:16,
+          fill:{ color:'FFFFFF', transparency:100 },
+          hyperlink:ctaLink,
+          objectName:'Dashboard CTA link'
+        });
       }
     });
     await pptx.writeFile({ fileName:outputPath });
